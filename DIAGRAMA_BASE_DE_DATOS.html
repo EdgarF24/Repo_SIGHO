@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SIGHO Database Diagram - English</title>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1600px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .header p {
+            font-size: 1.2em;
+            opacity: 0.95;
+        }
+
+        .controls {
+            background: #f8f9fa;
+            padding: 20px;
+            border-bottom: 2px solid #e9ecef;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-secondary {
+            background: #6c757d;
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background: #5a6268;
+            transform: translateY(-2px);
+        }
+
+        .diagram-container {
+            padding: 40px;
+            background: white;
+            overflow-x: auto;
+        }
+
+        .mermaid {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 400px;
+        }
+
+        .info-box {
+            background: #e7f3ff;
+            border-left: 4px solid #2196F3;
+            padding: 20px;
+            margin: 20px 40px;
+            border-radius: 5px;
+        }
+
+        .info-box h3 {
+            color: #1976D2;
+            margin-bottom: 10px;
+        }
+
+        .info-box ul {
+            margin-left: 20px;
+            line-height: 1.8;
+        }
+
+        .footer {
+            background: #343a40;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 0.9em;
+        }
+
+        .zoom-info {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin: 20px 40px;
+            border-radius: 5px;
+        }
+
+        @media print {
+            body {
+                background: white;
+            }
+
+            .controls,
+            .info-box,
+            .zoom-info {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🗄️ SIGHO Database Diagram</h1>
+            <p>Integrated Hotel Management System - English Version</p>
+        </div>
+
+        <div class="controls">
+            <button class="btn btn-primary" onclick="zoomIn()">🔍 Zoom In</button>
+            <button class="btn btn-primary" onclick="zoomOut()">🔎 Zoom Out</button>
+            <button class="btn btn-primary" onclick="resetZoom()">↺ Reset</button>
+            <button class="btn btn-secondary" onclick="window.print()">🖨️ Print</button>
+            <button class="btn btn-secondary" onclick="downloadSVG()">💾 Download SVG</button>
+        </div>
+
+        <div class="zoom-info">
+            <strong>💡 Tip:</strong> You can zoom with the mouse wheel (hold Ctrl) or use the buttons above.
+            Right-click on the diagram → "Save image as..." to export as an image.
+        </div>
+
+        <div class="diagram-container" id="diagramContainer">
+            <div class="mermaid">
+                erDiagram
+                users ||--o{ reservations : "creates"
+                users ||--o{ maintenance : "reports/assigns"
+                users ||--o{ payments : "processes"
+                users ||--o{ inventory_movements : "registers"
+
+                room_types ||--o{ rooms : "has"
+                room_types ||--o{ room_type_amenities : "has"
+
+                amenities ||--o{ room_type_amenities : "used_in"
+
+                rooms ||--o{ reservations : "has"
+                rooms ||--o{ maintenance : "requires"
+
+                guests ||--o{ reservations : "has"
+
+                reservations ||--o{ payments : "has"
+
+                inventory ||--o{ inventory_movements : "registers"
+
+                users {
+                int id PK
+                string username UK
+                string email UK
+                string full_name
+                string hashed_password
+                enum role
+                boolean is_active
+                boolean is_superuser
+                datetime created_at
+                datetime updated_at
+                datetime last_login
+                }
+
+                amenities {
+                int id PK
+                string name UK
+                text description
+                string icon
+                enum category
+                boolean is_active
+                datetime created_at
+                datetime updated_at
+                }
+
+                room_type_amenities {
+                int id PK
+                int room_type_id FK
+                int amenity_id FK
+                datetime created_at
+                }
+
+                room_types {
+                int id PK
+                string name UK
+                text description
+                int capacity
+                float base_price_ves
+                float base_price_usd
+                float base_price_eur
+                boolean is_active
+                datetime created_at
+                datetime updated_at
+                }
+
+                rooms {
+                int id PK
+                string room_number UK
+                int floor
+                int room_type_id FK
+                enum status
+                text notes
+                boolean is_active
+                datetime created_at
+                datetime updated_at
+                }
+
+                guests {
+                int id PK
+                string first_name
+                string last_name
+                string id_type
+                string id_number UK
+                string email
+                string phone
+                string phone_alternative
+                text address
+                string city
+                string state
+                string country
+                date date_of_birth
+                string nationality
+                text notes
+                datetime created_at
+                datetime updated_at
+                }
+
+                reservations {
+                int id PK
+                string confirmation_code UK
+                int guest_id FK
+                int room_id FK
+                int created_by FK
+                date check_in_date
+                date check_out_date
+                datetime actual_check_in
+                datetime actual_check_out
+                int num_adults
+                int num_children
+                enum status
+                string currency
+                float price_per_night
+                int total_nights
+                float subtotal
+                float tax_percentage
+                float tax_amount
+                float total_amount
+                float paid_amount
+                float balance
+                boolean is_paid
+                text special_requests
+                text notes
+                text cancellation_reason
+                datetime created_at
+                datetime updated_at
+                }
+
+                payments {
+                int id PK
+                string payment_code UK
+                int reservation_id FK
+                int processed_by FK
+                float amount
+                string currency
+                enum payment_method
+                enum status
+                string reference_number
+                string bank_name
+                string account_number
+                text notes
+                datetime payment_date
+                datetime created_at
+                datetime updated_at
+                }
+
+                maintenance {
+                int id PK
+                string maintenance_code UK
+                int room_id FK
+                int reported_by FK
+                int assigned_to FK
+                string title
+                text description
+                enum maintenance_type
+                enum priority
+                enum status
+                date scheduled_date
+                datetime started_at
+                datetime completed_at
+                float estimated_cost
+                float actual_cost
+                string currency
+                text resolution_notes
+                text materials_used
+                datetime created_at
+                datetime updated_at
+                }
+
+                inventory {
+                int id PK
+                string item_code UK
+                string name
+                text description
+                enum category
+                string unit_of_measure
+                int current_quantity
+                int minimum_quantity
+                int maximum_quantity
+                float unit_cost
+                string currency
+                string supplier_name
+                string supplier_contact
+                boolean is_active
+                string storage_location
+                datetime created_at
+                datetime updated_at
+                datetime last_restock_date
+                }
+
+                inventory_movements {
+                int id PK
+                string movement_code UK
+                int inventory_id FK
+                int user_id FK
+                enum movement_type
+                int quantity
+                int previous_quantity
+                int new_quantity
+                string reason
+                text notes
+                string reference_document
+                datetime movement_date
+                datetime created_at
+                }
+            </div>
+        </div>
+
+        <div class="info-box">
+            <h3>📊 11 System Tables</h3>
+            <ul>
+                <li><strong>users</strong> - System user management with roles and permissions</li>
+                <li><strong>amenities</strong> - Catalog of room amenities/services (WiFi, TV, etc.)</li>
+                <li><strong>room_type_amenities</strong> - Many-to-many relationship between room types and amenities
+                </li>
+                <li><strong>room_types</strong> - Room types with multi-currency pricing</li>
+                <li><strong>rooms</strong> - Physical hotel rooms</li>
+                <li><strong>guests</strong> - Hotel guest registry</li>
+                <li><strong>reservations</strong> - Complete reservation management (check-in/out)</li>
+                <li><strong>payments</strong> - Multi-currency payment control and methods</li>
+                <li><strong>maintenance</strong> - Preventive and corrective maintenance</li>
+                <li><strong>inventory</strong> - Stock control with alerts</li>
+                <li><strong>inventory_movements</strong> - Movement history</li>
+            </ul>
+        </div>
+
+        <div class="info-box">
+            <h3>🔗 Relationship Legend</h3>
+            <ul>
+                <li><strong>||--o{</strong> - One to Many (One entity can have multiple related records)</li>
+                <li><strong>PK</strong> - Primary Key</li>
+                <li><strong>FK</strong> - Foreign Key</li>
+                <li><strong>UK</strong> - Unique Key</li>
+            </ul>
+        </div>
+
+        <div class="footer">
+            <p><strong>SIGHO</strong> - Integrated Hotel Management System © 2024</p>
+            <p>Development Team: Edgar Fermenio, Andrés Sosa, Lino Gouveia, Santiago Mendez, Santiago Martin</p>
+        </div>
+    </div>
+
+    <script>
+        // Mermaid configuration
+        mermaid.initialize({
+            startOnLoad: true,
+            theme: 'default',
+            er: {
+                fontSize: 14,
+                useMaxWidth: true
+            },
+            flowchart: {
+                useMaxWidth: true,
+                htmlLabels: true
+            }
+        });
+
+        // Zoom functions
+        let currentZoom = 1;
+        const container = document.getElementById('diagramContainer');
+
+        function zoomIn() {
+            currentZoom += 0.1;
+            applyZoom();
+        }
+
+        function zoomOut() {
+            if (currentZoom > 0.3) {
+                currentZoom -= 0.1;
+                applyZoom();
+            }
+        }
+
+        function resetZoom() {
+            currentZoom = 1;
+            applyZoom();
+        }
+
+        function applyZoom() {
+            const mermaidDiv = container.querySelector('.mermaid');
+            mermaidDiv.style.transform = `scale(${currentZoom})`;
+            mermaidDiv.style.transformOrigin = 'top center';
+        }
+
+        // Download SVG function
+        function downloadSVG() {
+            const svg = document.querySelector('.mermaid svg');
+            if (svg) {
+                const serializer = new XMLSerializer();
+                const svgString = serializer.serializeToString(svg);
+                const blob = new Blob([svgString], { type: 'image/svg+xml' });
+                const url = URL.createObjectURL(blob);
+                const link = document.createElement('a');
+                link.href = url;
+                link.download = 'sigho_database_diagram.svg';
+                link.click();
+                URL.revokeURLObjectURL(url);
+            } else {
+                alert('Wait for the diagram to load completely');
+            }
+        }
+
+        // Mouse wheel zoom
+        container.addEventListener('wheel', function (e) {
+            if (e.ctrlKey) {
+                e.preventDefault();
+                if (e.deltaY < 0) {
+                    zoomIn();
+                } else {
+                    zoomOut();
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

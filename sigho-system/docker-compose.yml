@@ -1,0 +1,51 @@
+version: '3.8'
+
+services:
+  # Backend API
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: sigho-backend
+    ports:
+      - "8000:8000"
+    environment:
+      - DATABASE_URL=sqlite:///./sigho.db
+      - SECRET_KEY=${SECRET_KEY:-your-secret-key-here-change-in-production}
+      - DEBUG=True
+      - HOST=0.0.0.0
+      - PORT=8000
+    volumes:
+      - ./backend:/app
+      - sigho-data:/app/data
+    command: uvicorn main:app --host 0.0.0.0 --port 8000 --reload
+    networks:
+      - sigho-network
+    restart: unless-stopped
+
+  # Frontend GUI (opcional - para ejecutar en modo servidor)
+  # Nota: CustomTkinter requiere display, por lo que es mejor ejecutarlo localmente
+  # Este servicio está comentado por defecto
+  # frontend:
+  #   build:
+  #     context: ./frontend
+  #     dockerfile: Dockerfile
+  #   container_name: sigho-frontend
+  #   environment:
+  #     - BACKEND_URL=http://backend:8000
+  #     - DISPLAY=${DISPLAY}
+  #   volumes:
+  #     - ./frontend:/app
+  #     - /tmp/.X11-unix:/tmp/.X11-unix
+  #   depends_on:
+  #     - backend
+  #   networks:
+  #     - sigho-network
+
+networks:
+  sigho-network:
+    driver: bridge
+
+volumes:
+  sigho-data:
+    driver: local
