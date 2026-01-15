@@ -64,7 +64,11 @@ sigho-system/
 
 ```bash
 # Primero crear la estructura usando el script
-bash create_structure.sh
+# Linux/Mac:
+bash crear_estructura.sh
+
+# Windows PowerShell:
+.\crear_estructura.ps1
 ```
 
 ### 2. Configurar el Backend
@@ -76,7 +80,7 @@ cd backend
 python -m venv venv
 
 # Activar entorno virtual
-# En Windows:
+# En Windows PowerShell:
 venv\Scripts\activate
 # En Linux/Mac:
 source venv/bin/activate
@@ -105,7 +109,7 @@ cd frontend
 python -m venv venv
 
 # Activar entorno virtual
-# En Windows:
+# En Windows PowerShell:
 venv\Scripts\activate
 # En Linux/Mac:
 source venv/bin/activate
@@ -115,6 +119,28 @@ pip install -r requirements.txt
 
 # Iniciar el frontend
 python main.py
+```
+
+## 🚀 Inicio Rápido con Scripts
+
+### Windows (PowerShell)
+
+```powershell
+# Instalación
+.\install_sigho.ps1
+
+# Iniciar sistema completo
+.\start_sigho.ps1
+```
+
+### Linux/Mac (Bash)
+
+```bash
+# Instalación
+./install_sigho.sh
+
+# Iniciar sistema completo
+./start_sigho.sh
 ```
 
 ## 👥 Usuarios por Defecto

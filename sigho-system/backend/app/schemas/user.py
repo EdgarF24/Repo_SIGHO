@@ -46,6 +46,12 @@ class UserResponse(UserBase):
         from_attributes = True
 
 
+# ========== Database ==========
+class UserInDB(UserResponse):
+    """Schema de usuario en base de datos"""
+    hashed_password: str
+
+
 # ========== Login ==========
 class UserLogin(BaseModel):
     """Schema para login"""

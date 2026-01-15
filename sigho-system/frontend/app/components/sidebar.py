@@ -34,7 +34,7 @@ class Sidebar(ctk.CTkFrame):
         
         ctk.CTkLabel(
             title_frame,
-            text="🏨 SIGHO",
+            text="SIGHO",
             font=("Segoe UI", 20, "bold")
         ).pack()
         
@@ -55,7 +55,7 @@ class Sidebar(ctk.CTkFrame):
             
             ctk.CTkLabel(
                 user_frame,
-                text=f"👤 {user['full_name']}",
+                text=f" {user['full_name']}",
                 font=FONTS["body_bold"]
             ).pack(anchor="w")
             
@@ -75,12 +75,12 @@ class Sidebar(ctk.CTkFrame):
     def get_role_display(self, role: str) -> str:
         """Obtiene el texto a mostrar para el rol"""
         roles = {
-            "admin": "🔑 Administrador",
-            "manager": "👔 Gerente",
-            "receptionist": "📋 Recepcionista",
-            "maintenance": "🔧 Mantenimiento",
-            "inventory": "📦 Inventario",
-            "viewer": "👁️ Visualizador"
+            "admin": " Administrador",
+            "manager": " Gerente",
+            "receptionist": " Recepcionista",
+            "maintenance": "Mantenimiento",
+            "inventory": "Inventario",
+            "viewer": " Visualizador"
         }
         return roles.get(role, role)
     
@@ -93,36 +93,36 @@ class Sidebar(ctk.CTkFrame):
         
         # Menú principal (siempre visible)
         menu_items = [
-            ("📊 Dashboard", "dashboard", True),
+            ("Dashboard", "dashboard", True),
         ]
         
         # Módulos de recepción (admin, manager, receptionist)
         if role in ['admin', 'manager', 'receptionist'] or is_superuser:
             menu_items.extend([
-                ("🛏️ Habitaciones", "rooms", True),
-                ("📅 Reservas", "reservations", True),
-                ("👥 Huéspedes", "guests", True),
-                ("💳 Pagos", "payments", True),
+                (" Habitaciones", "rooms", True),
+                (" Reservas", "reservations", True),
+                (" Huéspedes", "guests", True),
+                (" Pagos", "payments", True),
             ])
         
         # Mantenimiento (admin, manager, maintenance)
         if role in ['admin', 'manager', 'maintenance'] or is_superuser:
-            menu_items.append(("🔧 Mantenimiento", "maintenance", True))
+            menu_items.append(("Mantenimiento", "maintenance", True))
         
         # Inventario (admin, manager, inventory)
         if role in ['admin', 'manager', 'inventory'] or is_superuser:
-            menu_items.append(("📦 Inventario", "inventory", True))
+            menu_items.append(("Inventario", "inventory", True))
         
         # Reportes (admin, manager)
         if role in ['admin', 'manager'] or is_superuser:
-            menu_items.append(("📈 Reportes", "reports", True))
+            menu_items.append((" Reportes", "reports", True))
         
         # Usuarios (solo admin)
         if role == 'admin' or is_superuser:
-            menu_items.append(("👤 Usuarios", "users", True))
+            menu_items.append((" Usuarios", "users", True))
         
         # Configuración (todos)
-        menu_items.append(("⚙️ Configuración", "settings", True))
+        menu_items.append(("Configuración", "settings", True))
         
         # Crear botones
         for text, key, enabled in menu_items:
@@ -135,7 +135,7 @@ class Sidebar(ctk.CTkFrame):
         # Botón de cerrar sesión
         logout_btn = ctk.CTkButton(
             self,
-            text="🚪 Cerrar Sesión",
+            text=" Cerrar Sesión",
             command=lambda: self.on_menu_select("logout"),
             font=FONTS["body"],
             height=SIZES["button_height"],

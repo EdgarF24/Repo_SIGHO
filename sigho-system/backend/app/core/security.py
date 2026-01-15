@@ -1,24 +1,29 @@
 """
-Seguridad y autenticación JWT
+Seguridad y autenticacion JWT
 """
 from datetime import datetime, timedelta
 from typing import Optional
 from jose import JWTError, jwt
-from passlib.context import CryptContext
+import bcrypt
 from app.core.config import settings
-
-# Contexto para hashear contraseñas
-pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
 
 def verify_password(plain_password: str, hashed_password: str) -> bool:
     """Verifica si una contraseña coincide con su hash"""
-    return pwd_context.verify(plain_password, hashed_password)
+    try:
+        return bcrypt.checkpw(
+            plain_password.encode('utf-8'),
+            hashed_password.encode('utf-8')
+        )
+    except Exception as e:
+        print(f"Error verificando password: {e}")
+        return False
 
 
 def get_password_hash(password: str) -> str:
     """Genera el hash de una contraseña"""
-    return pwd_context.hash(password)
+    hashed = bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt())
+    return hashed.decode('utf-8')
 
 
 def create_access_token(data: dict, expires_delta: Optional[timedelta] = None) -> str:
@@ -27,7 +32,7 @@ def create_access_token(data: dict, expires_delta: Optional[timedelta] = None) -
     
     Args:
         data: Datos a codificar en el token
-        expires_delta: Tiempo de expiración del token
+        expires_delta: Tiempo de expiracion del token
     
     Returns:
         Token JWT codificado
@@ -53,7 +58,7 @@ def decode_access_token(token: str) -> Optional[dict]:
         token: Token JWT a decodificar
     
     Returns:
-        Datos decodificados del token o None si es inválido
+        Datos decodificados del token o None si es invalido
     """
     try:
         payload = jwt.decode(token, settings.SECRET_KEY, algorithms=[settings.ALGORITHM])

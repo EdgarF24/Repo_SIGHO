@@ -35,7 +35,7 @@ class GuestsView(ctk.CTkFrame):
         
         ctk.CTkButton(
             btn_frame,
-            text="➕ Nuevo Huésped",
+            text=" Nuevo Huésped",
             command=self.create_guest,
             width=150,
             height=SIZES["button_height"]
@@ -43,7 +43,7 @@ class GuestsView(ctk.CTkFrame):
         
         ctk.CTkButton(
             btn_frame,
-            text="✏️ Editar",
+            text="Editar",
             command=self.edit_guest,
             width=100,
             height=SIZES["button_height"]
@@ -51,7 +51,7 @@ class GuestsView(ctk.CTkFrame):
         
         ctk.CTkButton(
             btn_frame,
-            text="🗑️ Eliminar",
+            text="Eliminar",
             command=self.delete_guest,
             width=100,
             height=SIZES["button_height"],
@@ -61,7 +61,7 @@ class GuestsView(ctk.CTkFrame):
         
         ctk.CTkButton(
             btn_frame,
-            text="🔄 Actualizar",
+            text=" Actualizar",
             command=self.load_guests,
             width=100,
             height=SIZES["button_height"]
@@ -73,7 +73,7 @@ class GuestsView(ctk.CTkFrame):
         
         self.search_entry = ctk.CTkEntry(
             search_frame,
-            placeholder_text="🔍 Buscar por nombre, documento, email o teléfono...",
+            placeholder_text="Buscar por nombre, documento, email o teléfono...",
             width=350
         )
         self.search_entry.pack(side="left", padx=5)

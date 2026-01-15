@@ -35,7 +35,7 @@ class InventoryView(ctk.CTkFrame):
         
         ctk.CTkButton(
             btn_frame,
-            text="➕ Nuevo Item",
+            text=" Nuevo Item",
             command=self.create_item,
             width=130,
             height=SIZES["button_height"]
@@ -43,7 +43,7 @@ class InventoryView(ctk.CTkFrame):
         
         ctk.CTkButton(
             btn_frame,
-            text="✏️ Editar",
+            text="Editar",
             command=self.edit_item,
             width=100,
             height=SIZES["button_height"]
@@ -51,7 +51,7 @@ class InventoryView(ctk.CTkFrame):
         
         ctk.CTkButton(
             btn_frame,
-            text="📊 Movimiento",
+            text="Movimiento",
             command=self.create_movement,
             width=130,
             height=SIZES["button_height"]
@@ -59,7 +59,7 @@ class InventoryView(ctk.CTkFrame):
         
         ctk.CTkButton(
             btn_frame,
-            text="⚖️ Ajustar",
+            text=" Ajustar",
             command=self.adjust_quantity,
             width=100,
             height=SIZES["button_height"]
@@ -67,7 +67,7 @@ class InventoryView(ctk.CTkFrame):
         
         ctk.CTkButton(
             btn_frame,
-            text="⚠️ Stock Bajo",
+            text="Stock Bajo",
             command=self.show_low_stock,
             width=120,
             height=SIZES["button_height"],
@@ -77,7 +77,7 @@ class InventoryView(ctk.CTkFrame):
         
         ctk.CTkButton(
             btn_frame,
-            text="🗑️ Eliminar",
+            text="Eliminar",
             command=self.delete_item,
             width=100,
             height=SIZES["button_height"],
@@ -87,7 +87,7 @@ class InventoryView(ctk.CTkFrame):
         
         ctk.CTkButton(
             btn_frame,
-            text="🔄 Actualizar",
+            text=" Actualizar",
             command=self.load_items,
             width=100,
             height=SIZES["button_height"]
@@ -101,7 +101,7 @@ class InventoryView(ctk.CTkFrame):
         
         self.category_filter = ctk.CTkComboBox(
             filter_frame,
-            values=["Todas", "amenidades", "limpieza", "alimentos", "bebidas", "mantenimiento", "otros"],
+            values=["Todas", "cleaning", "maintenance", "bedding", "bathroom", "kitchen", "electronics", "furniture", "food_beverage", "other"],
             command=self.filter_by_category,
             width=150
         )
@@ -171,12 +171,12 @@ class InventoryView(ctk.CTkFrame):
                 price = item.get('unit_price', 0)
                 
                 if qty <= min_qty:
-                    item['status_display'] = "⚠️ Stock Bajo"
+                    item['status_display'] = "Stock Bajo"
                     low_stock_count += 1
                 elif qty <= min_qty * 1.5:
-                    item['status_display'] = "⚡ Alerta"
+                    item['status_display'] = " Alerta"
                 else:
-                    item['status_display'] = "✅ Normal"
+                    item['status_display'] = "Normal"
                 
                 total_value += qty * price
             
@@ -200,11 +200,11 @@ class InventoryView(ctk.CTkFrame):
                     qty = item.get('current_quantity', 0)
                     min_qty = item.get('minimum_quantity', 0)
                     if qty <= min_qty:
-                        item['status_display'] = "⚠️ Stock Bajo"
+                        item['status_display'] = "Stock Bajo"
                     elif qty <= min_qty * 1.5:
-                        item['status_display'] = "⚡ Alerta"
+                        item['status_display'] = " Alerta"
                     else:
-                        item['status_display'] = "✅ Normal"
+                        item['status_display'] = "Normal"
                 
                 self.table.load_data(items)
                 self.total_items_label.configure(text=f"Items en {category}: {len(items)}")
@@ -217,7 +217,7 @@ class InventoryView(ctk.CTkFrame):
             items = inventory_service.get_low_stock()
             
             for item in items:
-                item['status_display'] = "⚠️ Stock Bajo"
+                item['status_display'] = "Stock Bajo"
             
             self.table.load_data(items)
             self.total_items_label.configure(text=f"Items con stock bajo: {len(items)}")
@@ -263,7 +263,7 @@ Descripción:
             {"name": "item_code", "label": "Código del Item", "type": "entry", "required": True},
             {"name": "name", "label": "Nombre", "type": "entry", "required": True},
             {"name": "category", "label": "Categoría", "type": "combobox", 
-             "values": ["amenidades", "limpieza", "alimentos", "bebidas", "mantenimiento", "otros"], "required": True},
+             "values": ["cleaning", "maintenance", "bedding", "bathroom", "kitchen", "electronics", "furniture", "food_beverage", "other"], "required": True},
             {"name": "description", "label": "Descripción", "type": "textarea", "height": 80},
             {"name": "current_quantity", "label": "Cantidad Inicial", "type": "entry", "validate": "number", "default": "0"},
             {"name": "minimum_quantity", "label": "Cantidad Mínima", "type": "entry", "validate": "number", "required": True},
@@ -305,7 +305,7 @@ Descripción:
         fields = [
             {"name": "name", "label": "Nombre", "type": "entry", "required": True},
             {"name": "category", "label": "Categoría", "type": "combobox", 
-             "values": ["amenidades", "limpieza", "alimentos", "bebidas", "mantenimiento", "otros"], "required": True},
+             "values": ["cleaning", "maintenance", "bedding", "bathroom", "kitchen", "electronics", "furniture", "food_beverage", "other"], "required": True},
             {"name": "description", "label": "Descripción", "type": "textarea", "height": 80},
             {"name": "minimum_quantity", "label": "Cantidad Mínima", "type": "entry", "validate": "number", "required": True},
             {"name": "unit", "label": "Unidad de Medida", "type": "entry", "required": True},

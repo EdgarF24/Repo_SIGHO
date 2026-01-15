@@ -57,6 +57,11 @@ class RoomTypeResponse(RoomTypeBase):
         from_attributes = True
 
 
+class RoomTypeInDB(RoomTypeResponse):
+    """Schema de tipo de habitación en base de datos"""
+    pass
+
+
 # ========== ROOM ==========
 class RoomBase(BaseModel):
     """Schema base de habitación"""
@@ -89,6 +94,11 @@ class RoomResponse(RoomBase):
     
     class Config:
         from_attributes = True
+
+
+class RoomInDB(RoomResponse):
+    """Schema de habitación en base de datos"""
+    pass
 
 
 # ========== AVAILABILITY ==========

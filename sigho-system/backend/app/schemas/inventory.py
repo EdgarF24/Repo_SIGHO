@@ -61,6 +61,11 @@ class InventoryResponse(InventoryBase):
         from_attributes = True
 
 
+class InventoryInDB(InventoryResponse):
+    """Schema de inventario en base de datos"""
+    pass
+
+
 # ========== INVENTORY MOVEMENT ==========
 class InventoryMovementBase(BaseModel):
     """Schema base de movimiento de inventario"""
@@ -89,6 +94,11 @@ class InventoryMovementResponse(InventoryMovementBase):
     
     class Config:
         from_attributes = True
+
+
+class InventoryMovementInDB(InventoryMovementResponse):
+    """Schema de movimiento en base de datos"""
+    pass
 
 
 class InventoryAdjustment(BaseModel):

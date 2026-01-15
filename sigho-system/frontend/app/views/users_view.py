@@ -35,7 +35,7 @@ class UsersView(ctk.CTkFrame):
         
         ctk.CTkButton(
             btn_frame,
-            text="➕ Nuevo Usuario",
+            text=" Nuevo Usuario",
             command=self.create_user,
             width=140,
             height=SIZES["button_height"]
@@ -43,7 +43,7 @@ class UsersView(ctk.CTkFrame):
         
         ctk.CTkButton(
             btn_frame,
-            text="✏️ Editar",
+            text="Editar",
             command=self.edit_user,
             width=100,
             height=SIZES["button_height"]
@@ -51,7 +51,7 @@ class UsersView(ctk.CTkFrame):
         
         ctk.CTkButton(
             btn_frame,
-            text="🔑 Cambiar Contraseña",
+            text=" Cambiar Contraseña",
             command=self.change_password,
             width=180,
             height=SIZES["button_height"]
@@ -59,7 +59,7 @@ class UsersView(ctk.CTkFrame):
         
         ctk.CTkButton(
             btn_frame,
-            text="✅ Activar/Desactivar",
+            text="Activar/Desactivar",
             command=self.toggle_active,
             width=160,
             height=SIZES["button_height"],
@@ -69,7 +69,7 @@ class UsersView(ctk.CTkFrame):
         
         ctk.CTkButton(
             btn_frame,
-            text="🗑️ Eliminar",
+            text="Eliminar",
             command=self.delete_user,
             width=100,
             height=SIZES["button_height"],
@@ -79,7 +79,7 @@ class UsersView(ctk.CTkFrame):
         
         ctk.CTkButton(
             btn_frame,
-            text="🔄 Actualizar",
+            text=" Actualizar",
             command=self.load_users,
             width=100,
             height=SIZES["button_height"]
@@ -162,17 +162,17 @@ class UsersView(ctk.CTkFrame):
                 # Rol con icono
                 role = user.get('role', 'receptionist')
                 role_map = {
-                    "admin": "👑 Administrador",
-                    "manager": "📊 Gerente",
-                    "receptionist": "🏨 Recepcionista",
-                    "maintenance": "🔧 Mantenimiento",
-                    "inventory": "📦 Inventario"
+                    "admin": "Administrador",
+                    "manager": "Gerente",
+                    "receptionist": "Recepcionista",
+                    "maintenance": "Mantenimiento",
+                    "inventory": "Inventario"
                 }
                 user['role_display'] = role_map.get(role, role)
                 
                 # Estado con icono
                 is_active = user.get('is_active', True)
-                user['is_active_display'] = "✅ Activo" if is_active else "❌ Inactivo"
+                user['is_active_display'] = "Activo" if is_active else "Inactivo"
                 
                 if is_active:
                     active_count += 1
@@ -206,9 +206,9 @@ class UsersView(ctk.CTkFrame):
         """Formatea y carga los datos"""
         for user in users:
             user['full_name'] = f"{user.get('first_name', '')} {user.get('last_name', '')}".strip() or "N/A"
-            role_map = {"admin": "👑 Administrador", "manager": "📊 Gerente", "receptionist": "🏨 Recepcionista", "maintenance": "🔧 Mantenimiento", "inventory": "📦 Inventario"}
+            role_map = {"admin": "Administrador", "manager": "Gerente", "receptionist": "Recepcionista", "maintenance": "Mantenimiento", "inventory": "Inventario"}
             user['role_display'] = role_map.get(user.get('role', 'receptionist'), 'N/A')
-            user['is_active_display'] = "✅ Activo" if user.get('is_active', True) else "❌ Inactivo"
+            user['is_active_display'] = "Activo" if user.get('is_active', True) else "Inactivo"
             user['last_login'] = user.get('last_login') or "-"
         
         self.table.load_data(users)

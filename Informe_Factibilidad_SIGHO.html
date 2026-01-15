@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Informe de Factibilidad - SIGHO</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .header .subtitle {
+            font-size: 1.3em;
+            opacity: 0.9;
+            margin-bottom: 20px;
+        }
+        
+        .header .system-name {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            padding: 10px 30px;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+        
+        .meta-info {
+            background: #f8f9fa;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            border-bottom: 3px solid #667eea;
+        }
+        
+        .meta-item {
+            margin: 10px 0;
+        }
+        
+        .meta-item strong {
+            color: #667eea;
+        }
+        
+        .content {
+            padding: 40px;
+        }
+        
+        .section {
+            margin-bottom: 40px;
+        }
+        
+        .section-title {
+            font-size: 1.5em;
+            color: #1a1a2e;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #667eea;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .section-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2em;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        th {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+        
+        tr:hover {
+            background: #e8f0fe;
+        }
+        
+        .check {
+            color: #28a745;
+            font-weight: bold;
+        }
+        
+        .cross {
+            color: #dc3545;
+            font-weight: bold;
+        }
+        
+        .viabilidad-alta {
+            background: #d4edda;
+            color: #155724;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+            display: inline-block;
+        }
+        
+        .viabilidad-media {
+            background: #fff3cd;
+            color: #856404;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+            display: inline-block;
+        }
+        
+        .viabilidad-baja {
+            background: #f8d7da;
+            color: #721c24;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+            display: inline-block;
+        }
+        
+        .conclusion {
+            background: linear-gradient(135deg, #d4edda, #c3e6cb);
+            border-left: 5px solid #28a745;
+            padding: 30px;
+            border-radius: 10px;
+            margin-top: 30px;
+        }
+        
+        .conclusion h3 {
+            color: #155724;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+        }
+        
+        .conclusion p {
+            color: #155724;
+            font-size: 1.1em;
+        }
+        
+        .viable-badge {
+            display: inline-block;
+            background: #28a745;
+            color: white;
+            padding: 10px 30px;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 1.2em;
+            margin-top: 15px;
+            box-shadow: 0 5px 15px rgba(40, 167, 69, 0.3);
+        }
+        
+        .team-section {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+        
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .team-member {
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+        
+        .team-member .role {
+            color: #667eea;
+            font-weight: bold;
+            font-size: 0.9em;
+        }
+        
+        .total-row {
+            background: linear-gradient(135deg, #1a1a2e, #16213e) !important;
+            color: white !important;
+            font-weight: bold;
+        }
+        
+        .total-row td {
+            color: white;
+            border: none;
+        }
+        
+        .footer {
+            background: #1a1a2e;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 0.9em;
+        }
+        
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            .container {
+                box-shadow: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📋 INFORME DE FACTIBILIDAD</h1>
+            <p class="subtitle">Estudio de Factibilidad para el Desarrollo del Sistema</p>
+            <span class="system-name">🏨 SIGHO - Sistema Integrado de Gestión Hotelera</span>
+        </div>
+        
+        <div class="meta-info">
+            <div class="meta-item"><strong>Fecha:</strong> 12 de Diciembre de 2024</div>
+            <div class="meta-item"><strong>Versión:</strong> 1.0</div>
+            <div class="meta-item"><strong>Metodología:</strong> Modelo en Cascada</div>
+            <div class="meta-item"><strong>Equipo:</strong> 5 integrantes</div>
+        </div>
+        
+        <div class="content">
+            <!-- FACTIBILIDAD TÉCNICA -->
+            <div class="section">
+                <h2 class="section-title">
+                    <span class="section-icon">🔧</span>
+                    1. Factibilidad Técnica
+                </h2>
+                <p style="margin-bottom: 20px;">Análisis de los recursos técnicos disponibles y requeridos para el desarrollo del sistema SIGHO.</p>
+                
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Recurso Técnico</th>
+                            <th>Disponible</th>
+                            <th>Requerido</th>
+                            <th>Observaciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Lenguaje de Programación (Python 3.12+)</strong></td>
+                            <td class="check">✔️</td>
+                            <td class="check">✔️</td>
+                            <td>Equipo capacitado en Python para backend y frontend</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Framework Backend (FastAPI)</strong></td>
+                            <td class="check">✔️</td>
+                            <td class="check">✔️</td>
+                            <td>API REST moderna, alto rendimiento, documentación automática</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Framework Frontend (CustomTkinter)</strong></td>
+                            <td class="check">✔️</td>
+                            <td class="check">✔️</td>
+                            <td>Interfaz gráfica moderna con temas claro/oscuro</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Base de Datos (SQLite3 + SQLAlchemy)</strong></td>
+                            <td class="check">✔️</td>
+                            <td class="check">✔️</td>
+                            <td>BD embebida, sin configuración de servidor, ORM incluido</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Control de Versiones (Git/GitHub)</strong></td>
+                            <td class="check">✔️</td>
+                            <td class="check">✔️</td>
+                            <td>Repositorio implementado con historial de cambios</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Autenticación y Seguridad (JWT + bcrypt)</strong></td>
+                            <td class="check">✔️</td>
+                            <td class="check">✔️</td>
+                            <td>Tokens JWT, contraseñas hasheadas, roles de usuario</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Servidor Web (Uvicorn ASGI)</strong></td>
+                            <td class="check">✔️</td>
+                            <td class="check">✔️</td>
+                            <td>Servidor asíncrono de alto rendimiento</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Validación de Datos (Pydantic)</strong></td>
+                            <td class="check">✔️</td>
+                            <td class="check">✔️</td>
+                            <td>Validación automática de esquemas</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Documentación API (Swagger/OpenAPI)</strong></td>
+                            <td class="check">✔️</td>
+                            <td class="check">✔️</td>
+                            <td>Documentación automática en /docs</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Servidor en Nube (AWS/Azure)</strong></td>
+                            <td class="cross">❌</td>
+                            <td class="cross">❌</td>
+                            <td>Opcional para futuro despliegue en producción</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <div class="team-section">
+                    <h4>👥 Recursos Humanos - Equipo de Desarrollo</h4>
+                    <div class="team-grid">
+                        <div class="team-member">
+                            <strong>Edgar Fermenio</strong>
+                            <p class="role">Backend Developer</p>
+                        </div>
+                        <div class="team-member">
+                            <strong>Andrés Sosa</strong>
+                            <p class="role">Frontend Developer</p>
+                        </div>
+                        <div class="team-member">
+                            <strong>Lino Gouveia</strong>
+                            <p class="role">Database Admin</p>
+                        </div>
+                        <div class="team-member">
+                            <strong>Santiago Mendez</strong>
+                            <p class="role">QA Tester</p>
+                        </div>
+                        <div class="team-member">
+                            <strong>Santiago Martin</strong>
+                            <p class="role">QA Tester</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- FACTIBILIDAD OPERATIVA -->
+            <div class="section">
+                <h2 class="section-title">
+                    <span class="section-icon">⚙️</span>
+                    2. Factibilidad Operativa
+                </h2>
+                <p style="margin-bottom: 20px;">Análisis de la capacidad operativa para implementar y mantener el sistema en un ambiente hotelero.</p>
+                
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Aspecto Operativo</th>
+                            <th>Situación Actual</th>
+                            <th>Requerimiento</th>
+                            <th>Viabilidad</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Capacitación de Usuarios</strong></td>
+                            <td>Personal con conocimientos básicos en TIC</td>
+                            <td>Curso de 8-12 horas sobre el sistema</td>
+                            <td><span class="viabilidad-alta">Alta</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Interfaz de Usuario</strong></td>
+                            <td>Interfaz intuitiva con CustomTkinter</td>
+                            <td>Navegación simple con sidebar</td>
+                            <td><span class="viabilidad-alta">Alta</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Flujo de Trabajo</strong></td>
+                            <td>Procesos manuales en hotel</td>
+                            <td>Digitalización completa de operaciones</td>
+                            <td><span class="viabilidad-alta">Alta</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Gestión de Reservas</strong></td>
+                            <td>Check-in/Check-out manual</td>
+                            <td>Sistema automatizado con códigos</td>
+                            <td><span class="viabilidad-alta">Alta</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Control de Inventario</strong></td>
+                            <td>Control básico o inexistente</td>
+                            <td>Sistema de stock con alertas</td>
+                            <td><span class="viabilidad-alta">Alta</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Soporte Técnico</strong></td>
+                            <td>Equipo de desarrollo disponible</td>
+                            <td>Mantenimiento y actualizaciones</td>
+                            <td><span class="viabilidad-alta">Alta</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Resistencia al Cambio</strong></td>
+                            <td>Moderada en personal existente</td>
+                            <td>Talleres de sensibilización</td>
+                            <td><span class="viabilidad-media">Media</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Multi-moneda (VES/USD/EUR)</strong></td>
+                            <td>Manejo manual de divisas</td>
+                            <td>Sistema integrado de pagos</td>
+                            <td><span class="viabilidad-alta">Alta</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Reportes y Estadísticas</strong></td>
+                            <td>Reportes manuales</td>
+                            <td>Dashboard en tiempo real</td>
+                            <td><span class="viabilidad-alta">Alta</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Control de Acceso por Roles</strong></td>
+                            <td>Sin control de permisos</td>
+                            <td>5 roles diferenciados</td>
+                            <td><span class="viabilidad-alta">Alta</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <!-- FACTIBILIDAD ECONÓMICA -->
+            <div class="section">
+                <h2 class="section-title">
+                    <span class="section-icon">💰</span>
+                    3. Factibilidad Económica
+                </h2>
+                <p style="margin-bottom: 20px;">Estimación de costos de desarrollo y beneficios esperados del sistema SIGHO.</p>
+                
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Concepto</th>
+                            <th>Costo Estimado (USD)</th>
+                            <th>Beneficio Esperado</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Desarrollo Backend (FastAPI + SQLite)</strong></td>
+                            <td>$1,500</td>
+                            <td>API robusta, documentación automática, alta escalabilidad</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Desarrollo Frontend (CustomTkinter)</strong></td>
+                            <td>$1,200</td>
+                            <td>Interfaz moderna, temas claro/oscuro, UX intuitiva</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Diseño de Base de Datos</strong></td>
+                            <td>$800</td>
+                            <td>Estructura optimizada, integridad de datos</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Pruebas y QA</strong></td>
+                            <td>$600</td>
+                            <td>Sistema estable, detección temprana de errores</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Infraestructura (Local/Servidor)</strong></td>
+                            <td>$500</td>
+                            <td>SQLite embebido reduce costos de servidor</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Licencias de Software</strong></td>
+                            <td>$0</td>
+                            <td>Tecnologías Open Source (Python, FastAPI, SQLite)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Capacitación del Personal</strong></td>
+                            <td>$400</td>
+                            <td>Uso eficiente del sistema, menor curva de aprendizaje</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Documentación y Manuales</strong></td>
+                            <td>$300</td>
+                            <td>Soporte autodidacta, referencia rápida</td>
+                        </tr>
+                        <tr class="total-row">
+                            <td><strong>TOTAL</strong></td>
+                            <td><strong>$5,300</strong></td>
+                            <td><strong>Automatización completa de gestión hotelera</strong></td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <h4 style="margin-top: 25px; color: #1a1a2e;">📈 Beneficios Adicionales Esperados:</h4>
+                <ul style="margin-top: 10px; padding-left: 25px;">
+                    <li>Reducción del 70% en tiempo de gestión de reservas</li>
+                    <li>Eliminación de errores manuales en facturación</li>
+                    <li>Control en tiempo real de ocupación hotelera</li>
+                    <li>Trazabilidad completa de pagos multi-moneda</li>
+                    <li>Alertas automáticas de inventario bajo y mantenimiento</li>
+                    <li>Reportes y estadísticas para toma de decisiones</li>
+                    <li>Retorno de inversión estimado en 6-8 meses</li>
+                </ul>
+            </div>
+            
+            <!-- CONCLUSIÓN -->
+            <div class="section">
+                <h2 class="section-title">
+                    <span class="section-icon">✅</span>
+                    4. Conclusión Final
+                </h2>
+                
+                <div class="conclusion">
+                    <h3>🎯 Dictamen del Estudio de Factibilidad</h3>
+                    <p>
+                        Tras analizar los aspectos técnicos, operativos y económicos del proyecto <strong>SIGHO - Sistema Integrado de Gestión Hotelera</strong>, el equipo de desarrollo concluye que:
+                    </p>
+                    <br>
+                    <p>
+                        <strong>1. Factibilidad Técnica:</strong> El proyecto cuenta con todas las herramientas, frameworks y conocimientos necesarios. El equipo está capacitado en Python, FastAPI y CustomTkinter. La arquitectura propuesta (API REST + GUI de escritorio + SQLite) es sólida y escalable.
+                    </p>
+                    <br>
+                    <p>
+                        <strong>2. Factibilidad Operativa:</strong> El sistema puede implementarse exitosamente en un ambiente hotelero. La interfaz intuitiva, el control de acceso por roles y los módulos especializados (reservas, habitaciones, pagos, mantenimiento, inventario) cubren todas las necesidades operativas identificadas.
+                    </p>
+                    <br>
+                    <p>
+                        <strong>3. Factibilidad Económica:</strong> Con un costo estimado de $5,300 USD y uso de tecnologías Open Source (sin costos de licencias), el proyecto presenta una excelente relación costo-beneficio. El retorno de inversión se estima en 6-8 meses gracias a la automatización de procesos.
+                    </p>
+                    <br>
+                    <p style="text-align: center; font-size: 1.2em;">
+                        <strong>Por lo tanto, el equipo determina que el sistema SIGHO es VIABLE para proceder a la fase de desarrollo/codificación.</strong>
+                    </p>
+                    <p style="text-align: center;">
+                        <span class="viable-badge">✅ PROYECTO VIABLE</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p><strong>SIGHO - Sistema Integrado de Gestión Hotelera</strong> | Proyecto Académico © 2024</p>
+            <p>Documento generado el 12 de Diciembre de 2024</p>
+        </div>
+    </div>
+</body>
+</html>

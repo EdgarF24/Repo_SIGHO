@@ -59,6 +59,11 @@ class ReservationResponse(ReservationBase):
         from_attributes = True
 
 
+class ReservationInDB(ReservationResponse):
+    """Schema de reserva en base de datos"""
+    pass
+
+
 class ReservationCheckIn(BaseModel):
     """Schema para hacer check-in"""
     notes: Optional[str] = None
@@ -71,7 +76,7 @@ class ReservationCheckOut(BaseModel):
 
 class ReservationCancel(BaseModel):
     """Schema para cancelar reserva"""
-    cancellation_reason: str = Field(..., min_length=10)
+    cancellation_reason: str = Field(..., min_length=3)
 
 
 class ReservationSearchFilters(BaseModel):

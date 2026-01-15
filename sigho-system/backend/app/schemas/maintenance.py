@@ -58,6 +58,11 @@ class MaintenanceResponse(MaintenanceBase):
         from_attributes = True
 
 
+class MaintenanceInDB(MaintenanceResponse):
+    """Schema de mantenimiento en base de datos"""
+    pass
+
+
 class MaintenanceAssign(BaseModel):
     """Schema para asignar mantenimiento"""
     assigned_to: int

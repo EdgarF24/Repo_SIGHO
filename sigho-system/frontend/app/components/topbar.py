@@ -54,7 +54,7 @@ class Topbar(ctk.CTkFrame):
         # Usuario
         user = auth_service.get_user()
         if user:
-            user_text = f"👤 {user['username']}"
+            user_text = f" {user['username']}"
             self.user_label = ctk.CTkLabel(
                 self,
                 text=user_text,
@@ -67,7 +67,7 @@ class Topbar(ctk.CTkFrame):
         now = datetime.now()
         date_str = now.strftime("%d/%m/%Y")
         time_str = now.strftime("%H:%M:%S")
-        self.datetime_label.configure(text=f"📅 {date_str}  🕐 {time_str}")
+        self.datetime_label.configure(text=f" {date_str}   {time_str}")
         
         # Actualizar cada segundo
         self.after(1000, self.update_clock)

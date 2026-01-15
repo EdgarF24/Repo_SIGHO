@@ -33,7 +33,7 @@ class DashboardView(ctk.CTkScrollableFrame):
         # Botón de actualizar
         refresh_btn = ctk.CTkButton(
             self,
-            text="🔄 Actualizar",
+            text=" Actualizar",
             command=self.load_data,
             width=120,
             height=32
@@ -41,7 +41,7 @@ class DashboardView(ctk.CTkScrollableFrame):
         refresh_btn.grid(row=0, column=3, pady=20, padx=20, sticky="e")
         
         # Tarjetas de estadísticas - Habitaciones
-        self.create_section_label("🏨 Estado de Habitaciones", 1)
+        self.create_section_label("Estado de Habitaciones", 1)
         
         self.total_rooms_card = self.create_stat_card("Total", "0", "#3498db", 2, 0)
         self.available_rooms_card = self.create_stat_card("Disponibles", "0", "#2ecc71", 2, 1)
@@ -52,7 +52,7 @@ class DashboardView(ctk.CTkScrollableFrame):
         self.maintenance_rooms_card = self.create_stat_card("En Mantenimiento", "0", "#95a5a6", 3, 1)
         
         # Tarjetas de estadísticas - Reservas
-        self.create_section_label("📅 Reservas", 4)
+        self.create_section_label(" Reservas", 4)
         
         self.today_checkins_card = self.create_stat_card("Check-ins Hoy", "0", "#3498db", 5, 0)
         self.today_checkouts_card = self.create_stat_card("Check-outs Hoy", "0", "#e74c3c", 5, 1)
@@ -60,13 +60,13 @@ class DashboardView(ctk.CTkScrollableFrame):
         self.pending_reservations_card = self.create_stat_card("Pendientes", "0", "#f39c12", 5, 3)
         
         # Tarjetas de estadísticas - Ingresos
-        self.create_section_label("💰 Ingresos", 6)
+        self.create_section_label(" Ingresos", 6)
         
         self.today_revenue_card = self.create_stat_card("Hoy (USD)", "$0.00", "#27ae60", 7, 0)
         self.monthly_revenue_card = self.create_stat_card("Este Mes (USD)", "$0.00", "#16a085", 7, 1)
         
         # Otras estadísticas
-        self.create_section_label("🔧 Operaciones", 6)
+        self.create_section_label("Operaciones", 6)
         
         self.pending_maintenance_card = self.create_stat_card("Mantenimiento Pendiente", "0", "#e67e22", 7, 2)
         self.low_stock_card = self.create_stat_card("Items Bajo Stock", "0", "#c0392b", 7, 3)

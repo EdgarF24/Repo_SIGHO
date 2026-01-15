@@ -1,0 +1,815 @@
+<h1 id="sigho---manual-de-usuario">SIGHO - Manual de Usuario</h1>
+<h2 id="sistema-integrado-de-gestión-hotelera">Sistema Integrado de
+Gestión Hotelera</h2>
+<p><strong>Versión:</strong> 1.0.0<br />
+<strong>Fecha:</strong> Diciembre 2025</p>
+<hr />
+<h2 id="tabla-de-contenidos">Tabla de Contenidos</h2>
+<ol type="1">
+<li><a href="#1-bienvenido-a-sigho">Bienvenido a SIGHO</a></li>
+<li><a href="#2-inicio-rápido">Inicio Rápido</a></li>
+<li><a href="#3-acceso-al-sistema">Acceso al Sistema</a></li>
+<li><a href="#4-dashboard-principal">Dashboard Principal</a></li>
+<li><a href="#5-gestión-de-reservas">Gestión de Reservas</a></li>
+<li><a href="#6-gestión-de-habitaciones">Gestión de
+Habitaciones</a></li>
+<li><a href="#7-gestión-de-huéspedes">Gestión de Huéspedes</a></li>
+<li><a href="#8-procesamiento-de-pagos">Procesamiento de Pagos</a></li>
+<li><a href="#9-mantenimiento">Mantenimiento</a></li>
+<li><a href="#10-inventario">Inventario</a></li>
+<li><a href="#11-reportes">Reportes</a></li>
+<li><a href="#12-administración-de-usuarios">Administración de
+Usuarios</a></li>
+<li><a href="#13-configuración">Configuración</a></li>
+<li><a href="#14-preguntas-frecuentes">Preguntas Frecuentes</a></li>
+</ol>
+<hr />
+<h2 id="bienvenido-a-sigho">1. Bienvenido a SIGHO</h2>
+<h3 id="qué-es-sigho">1.1 ¿Qué es SIGHO?</h3>
+<p>SIGHO (Sistema Integrado de Gestión Hotelera) es una solución
+completa para la administración de hoteles que le permite:</p>
+<ul>
+<li>Gestionar reservas de habitaciones</li>
+<li>Administrar información de huéspedes</li>
+<li>Procesar pagos en múltiples monedas</li>
+<li>Controlar el estado de habitaciones</li>
+<li>Gestionar mantenimiento e inventario</li>
+<li>Generar reportes detallados</li>
+<li>Y mucho más…</li>
+</ul>
+<h3 id="beneficios-del-sistema">1.2 Beneficios del Sistema</h3>
+<ul>
+<li><strong>Fácil de usar:</strong> Interfaz intuitiva y amigable</li>
+<li><strong>Completo:</strong> Todas las funciones necesarias en un solo
+lugar</li>
+<li><strong>Seguro:</strong> Sistema de usuarios con roles y
+permisos</li>
+<li><strong>Rápido:</strong> Acceso instantáneo a la información</li>
+<li><strong>Confiable:</strong> Base de datos robusta y segura</li>
+</ul>
+<hr />
+<h2 id="inicio-rápido">2. Inicio Rápido</h2>
+<h3 id="requisitos">2.1 Requisitos</h3>
+<p>Para usar SIGHO necesita: - Computadora con Windows 10 o superior -
+Permisos de administrador (solo para instalación) - Conexión a internet
+(solo para instalación inicial)</p>
+<h3 id="instalación">2.2 Instalación</h3>
+<ol type="1">
+<li>Abra la carpeta del sistema SIGHO</li>
+<li>Haga doble clic en <code>install_sigho.ps1</code></li>
+<li>Espere a que complete la instalación (2-5 minutos)</li>
+<li>Cuando vea “Instalación completada exitosamente”, cierre la
+ventana</li>
+</ol>
+<h3 id="iniciar-el-sistema">2.3 Iniciar el Sistema</h3>
+<ol type="1">
+<li>En la carpeta de SIGHO, haga doble clic en
+<code>start_sigho.ps1</code></li>
+<li>Espere unos segundos a que aparezca la ventana de login</li>
+<li>Use las credenciales proporcionadas por el administrador</li>
+</ol>
+<p><strong>Credenciales por defecto:</strong> - Usuario:
+<code>admin</code> - Contraseña: <code>admin123</code></p>
+<blockquote>
+<p><strong>Nota:</strong> Cambie la contraseña después del primer acceso
+por seguridad.</p>
+</blockquote>
+<hr />
+<h2 id="acceso-al-sistema">3. Acceso al Sistema</h2>
+<h3 id="pantalla-de-login">3.1 Pantalla de Login</h3>
+<figure>
+<img src="login.png" alt="Pantalla de Login" />
+<figcaption aria-hidden="true">Pantalla de Login</figcaption>
+</figure>
+<p>Al iniciar SIGHO verá la pantalla de login donde debe ingresar:</p>
+<ol type="1">
+<li><strong>Usuario:</strong> Su nombre de usuario asignado</li>
+<li><strong>Contraseña:</strong> Su contraseña personal</li>
+</ol>
+<p>Haga clic en “Iniciar Sesión” o presione Enter.</p>
+<h3 id="tipos-de-usuario">3.2 Tipos de Usuario</h3>
+<p>SIGHO tiene diferentes tipos de usuario según el rol:</p>
+<h4 id="administrador">Administrador</h4>
+<ul>
+<li>Acceso completo a todas las funciones</li>
+<li>Gestión de usuarios</li>
+<li>Configuración del sistema</li>
+</ul>
+<h4 id="gerente">Gerente</h4>
+<ul>
+<li>Gestión general del hotel</li>
+<li>Acceso a reportes completos</li>
+<li>Supervisión de operaciones</li>
+</ul>
+<h4 id="recepcionista">Recepcionista</h4>
+<ul>
+<li>Gestión de reservas</li>
+<li>Check-in y check-out</li>
+<li>Información de huéspedes</li>
+</ul>
+<h4 id="mantenimiento">Mantenimiento</h4>
+<ul>
+<li>Reportes de mantenimiento</li>
+<li>Estado de habitaciones</li>
+<li>Inventario de suministros</li>
+</ul>
+<h4 id="inventario">Inventario</h4>
+<ul>
+<li>Gestión de inventario</li>
+<li>Movimientos de stock</li>
+<li>Proveedores</li>
+</ul>
+<h3 id="cerrar-sesión">3.3 Cerrar Sesión</h3>
+<p>Para cerrar sesión de forma segura:</p>
+<ol type="1">
+<li>Haga clic en su nombre de usuario (esquina superior derecha)</li>
+<li>Seleccione “Cerrar Sesión”</li>
+<li>Confirme la acción</li>
+</ol>
+<hr />
+<h2 id="dashboard-principal">4. Dashboard Principal</h2>
+<h3 id="descripción-general">4.1 Descripción General</h3>
+<p>Al iniciar sesión verá el Dashboard principal que muestra:</p>
+<ul>
+<li><strong>Estadísticas del día:</strong> Ocupación, ingresos,
+reservas</li>
+<li><strong>Resumen de habitaciones:</strong> Disponibles, ocupadas, en
+limpieza</li>
+<li><strong>Reservas recientes:</strong> Últimas reservas
+realizadas</li>
+<li><strong>Tareas pendientes:</strong> Mantenimientos, pagos
+pendientes</li>
+</ul>
+<h3 id="navegación">4.2 Navegación</h3>
+<p>El menú lateral izquierdo contiene accesos a todas las secciones:</p>
+<ul>
+<li><strong>Dashboard:</strong> Pantalla principal</li>
+<li><strong>Reservas:</strong> Gestión de reservas</li>
+<li><strong>Habitaciones:</strong> Estado y administración de
+cuartos</li>
+<li><strong>Huéspedes:</strong> Base de datos de clientes</li>
+<li><strong>Pagos:</strong> Procesamiento de pagos</li>
+<li><strong>Mantenimiento:</strong> Reportes y seguimiento</li>
+<li><strong>Inventario:</strong> Control de suministros</li>
+<li><strong>Reportes:</strong> Informes y estadísticas</li>
+<li><strong>Usuarios:</strong> Administración de usuarios (solo
+admin)</li>
+<li><strong>Configuración:</strong> Ajustes del sistema</li>
+</ul>
+<hr />
+<h2 id="gestión-de-reservas">5. Gestión de Reservas</h2>
+<h3 id="crear-una-nueva-reserva">5.1 Crear una Nueva Reserva</h3>
+<ol type="1">
+<li><p>Haga clic en <strong>“Reservas”</strong> en el menú
+lateral</p></li>
+<li><p>Haga clic en el botón <strong>“Nueva Reserva”</strong></p></li>
+<li><p>Complete el formulario:</p>
+<p><strong>Información del Huésped:</strong></p>
+<ul>
+<li>Busque un huésped existente o cree uno nuevo</li>
+<li>Nombre completo</li>
+<li>Documento de identidad</li>
+<li>Teléfono y email</li>
+</ul>
+<p><strong>Detalles de la Reserva:</strong></p>
+<ul>
+<li>Fecha de entrada (check-in)</li>
+<li>Fecha de salida (check-out)</li>
+<li>Tipo de habitación</li>
+<li>Número de adultos</li>
+<li>Número de niños</li>
+<li>Solicitudes especiales (opcional)</li>
+</ul>
+<p><strong>Información de Pago:</strong></p>
+<ul>
+<li>Moneda (VES, USD, EUR)</li>
+<li>El sistema calculará automáticamente el precio total</li>
+</ul></li>
+<li><p>Haga clic en <strong>“Crear Reserva”</strong></p></li>
+<li><p>El sistema generará un código de confirmación
+automáticamente</p></li>
+</ol>
+<h3 id="búsqueda-de-reservas">5.2 Búsqueda de Reservas</h3>
+<p>Puede buscar reservas de varias formas:</p>
+<ul>
+<li>Por código de confirmación</li>
+<li>Por nombre del huésped</li>
+<li>Por número de habitación</li>
+<li>Por fecha de entrada/salida</li>
+<li>Por estado (confirmada, check-in, completada, cancelada)</li>
+</ul>
+<h3 id="check-in">5.3 Check-in</h3>
+<p>Para realizar el check-in de una reserva:</p>
+<ol type="1">
+<li>Busque la reserva en el listado</li>
+<li>Haga clic en <strong>“Check-in”</strong></li>
+<li>Verifique los datos del huésped</li>
+<li>Confirme la habitación asignada</li>
+<li>Haga clic en <strong>“Confirmar Check-in”</strong></li>
+<li>La habitación cambiará a estado “Ocupada”</li>
+</ol>
+<h3 id="check-out">5.4 Check-out</h3>
+<p>Para realizar el check-out:</p>
+<ol type="1">
+<li>Busque la reserva activa</li>
+<li>Haga clic en <strong>“Check-out”</strong></li>
+<li>Verifique que no haya pagos pendientes</li>
+<li>Agregue notas finales si es necesario</li>
+<li>Haga clic en <strong>“Confirmar Check-out”</strong></li>
+<li>La habitación cambiará a estado “Limpieza”</li>
+</ol>
+<h3 id="modificar-una-reserva">5.5 Modificar una Reserva</h3>
+<p>Para cambiar los datos de una reserva:</p>
+<ol type="1">
+<li>Seleccione la reserva</li>
+<li>Haga clic en <strong>“Editar”</strong></li>
+<li>Modifique los datos necesarios</li>
+<li>Haga clic en <strong>“Guardar Cambios”</strong></li>
+</ol>
+<blockquote>
+<p><strong>Nota:</strong> Solo se pueden modificar reservas que no
+tengan check-in.</p>
+</blockquote>
+<h3 id="cancelar-una-reserva">5.6 Cancelar una Reserva</h3>
+<p>Para cancelar una reserva:</p>
+<ol type="1">
+<li>Seleccione la reserva</li>
+<li>Haga clic en <strong>“Cancelar”</strong></li>
+<li>Ingrese el motivo de la cancelación</li>
+<li>Confirme la cancelación</li>
+<li>Si hubo pagos, se procesará el reembolso correspondiente</li>
+</ol>
+<hr />
+<h2 id="gestión-de-habitaciones">6. Gestión de Habitaciones</h2>
+<h3 id="ver-estado-de-habitaciones">6.1 Ver Estado de Habitaciones</h3>
+<p>La vista de habitaciones le muestra:</p>
+<ul>
+<li>Número de habitación</li>
+<li>Tipo de habitación</li>
+<li>Piso</li>
+<li>Estado actual</li>
+<li>Última actualización</li>
+</ul>
+<p>Estados posibles: - <strong>Disponible:</strong> Lista para ocupar -
+<strong>Ocupada:</strong> Con huésped - <strong>Limpieza:</strong> En
+proceso de limpieza - <strong>Mantenimiento:</strong> Requiere
+reparación - <strong>Fuera de servicio:</strong> No disponible</p>
+<h3 id="cambiar-estado-de-habitación">6.2 Cambiar Estado de
+Habitación</h3>
+<ol type="1">
+<li>Seleccione la habitación</li>
+<li>Haga clic en <strong>“Cambiar Estado”</strong></li>
+<li>Seleccione el nuevo estado</li>
+<li>Agregue notas si es necesario</li>
+<li>Confirme el cambio</li>
+</ol>
+<h3 id="ver-detalles-de-habitación">6.3 Ver Detalles de Habitación</h3>
+<p>Haga clic en cualquier habitación para ver:</p>
+<ul>
+<li>Información completa del tipo de habitación</li>
+<li>Amenidades incluidas</li>
+<li>Precio por noche en todas las monedas</li>
+<li>Historial de reservas</li>
+<li>Historial de mantenimiento</li>
+</ul>
+<h3 id="tipos-de-habitación">6.4 Tipos de Habitación</h3>
+<p>Los tipos de habitación incluyen:</p>
+<h4 id="individual">Individual</h4>
+<ul>
+<li>Capacidad: 1 persona</li>
+<li>Cama sencilla</li>
+<li>Precio base: $25 USD</li>
+</ul>
+<h4 id="doble">Doble</h4>
+<ul>
+<li>Capacidad: 2 personas</li>
+<li>Cama matrimonial</li>
+<li>Balcón</li>
+<li>Precio base: $40 USD</li>
+</ul>
+<h4 id="triple">Triple</h4>
+<ul>
+<li>Capacidad: 3 personas</li>
+<li>Tres camas</li>
+<li>Minibar</li>
+<li>Balcón</li>
+<li>Precio base: $60 USD</li>
+</ul>
+<h4 id="suite-junior">Suite Junior</h4>
+<ul>
+<li>Capacidad: 2 personas</li>
+<li>Sala de estar</li>
+<li>Minibar</li>
+<li>Balcón</li>
+<li>Precio base: $75 USD</li>
+</ul>
+<h4 id="suite-presidencial">Suite Presidencial</h4>
+<ul>
+<li>Capacidad: 4 personas</li>
+<li>Sala de estar</li>
+<li>Cocina</li>
+<li>Minibar</li>
+<li>Balcón</li>
+<li>Precio base: $150 USD</li>
+</ul>
+<p>Todas las habitaciones incluyen: - WiFi gratuito - TV por cable -
+Aire acondicionado</p>
+<hr />
+<h2 id="gestión-de-huéspedes">7. Gestión de Huéspedes</h2>
+<h3 id="registrar-nuevo-huésped">7.1 Registrar Nuevo Huésped</h3>
+<ol type="1">
+<li><p>Vaya a la sección <strong>“Huéspedes”</strong></p></li>
+<li><p>Haga clic en <strong>“Nuevo Huésped”</strong></p></li>
+<li><p>Complete el formulario:</p>
+<p><strong>Información Personal:</strong></p>
+<ul>
+<li>Nombre</li>
+<li>Apellido</li>
+<li>Tipo de documento (CI, Pasaporte, RIF)</li>
+<li>Número de documento</li>
+<li>Fecha de nacimiento</li>
+<li>Nacionalidad</li>
+</ul>
+<p><strong>Información de Contacto:</strong></p>
+<ul>
+<li>Teléfono principal</li>
+<li>Teléfono alternativo (opcional)</li>
+<li>Email</li>
+<li>Dirección</li>
+<li>Ciudad</li>
+<li>Estado</li>
+<li>País</li>
+</ul></li>
+<li><p>Haga clic en <strong>“Guardar”</strong></p></li>
+</ol>
+<h3 id="buscar-huéspedes">7.2 Buscar Huéspedes</h3>
+<p>Puede buscar huéspedes por: - Nombre o apellido - Número de documento
+- Email - Teléfono</p>
+<h3 id="ver-historial-del-huésped">7.3 Ver Historial del Huésped</h3>
+<p>Al seleccionar un huésped puede ver: - Reservas anteriores - Pagos
+realizados - Preferencias registradas - Notas especiales</p>
+<h3 id="actualizar-información">7.4 Actualizar Información</h3>
+<ol type="1">
+<li>Seleccione el huésped</li>
+<li>Haga clic en <strong>“Editar”</strong></li>
+<li>Actualice los datos necesarios</li>
+<li>Guarde los cambios</li>
+</ol>
+<hr />
+<h2 id="procesamiento-de-pagos">8. Procesamiento de Pagos</h2>
+<h3 id="registrar-un-pago">8.1 Registrar un Pago</h3>
+<ol type="1">
+<li><p>Vaya a <strong>“Pagos”</strong></p></li>
+<li><p>Haga clic en <strong>“Nuevo Pago”</strong></p></li>
+<li><p>Seleccione la reserva</p></li>
+<li><p>Ingrese los detalles:</p>
+<p><strong>Información del Pago:</strong></p>
+<ul>
+<li>Monto</li>
+<li>Moneda (VES, USD, EUR)</li>
+<li>Método de pago:
+<ul>
+<li>Efectivo</li>
+<li>Tarjeta de crédito</li>
+<li>Tarjeta de débito</li>
+<li>Transferencia bancaria</li>
+<li>Pago móvil</li>
+</ul></li>
+</ul>
+<p><strong>Datos Adicionales (según método):</strong></p>
+<ul>
+<li>Número de referencia</li>
+<li>Banco</li>
+<li>Número de cuenta</li>
+<li>Notas</li>
+</ul></li>
+<li><p>Haga clic en <strong>“Procesar Pago”</strong></p></li>
+<li><p>El sistema generará un comprobante automáticamente</p></li>
+</ol>
+<h3 id="ver-historial-de-pagos">8.2 Ver Historial de Pagos</h3>
+<p>Puede filtrar pagos por: - Fecha - Estado (completado, pendiente,
+cancelado, reembolsado) - Método de pago - Moneda - Reserva</p>
+<h3 id="pagos-parciales">8.3 Pagos Parciales</h3>
+<p>SIGHO permite pagos parciales:</p>
+<ol type="1">
+<li>El sistema muestra el balance pendiente</li>
+<li>Puede registrar múltiples pagos hasta completar el monto</li>
+<li>Una vez pagado completamente, la reserva se marca como “Pagada”</li>
+</ol>
+<h3 id="reembolsos">8.4 Reembolsos</h3>
+<p>Para procesar un reembolso:</p>
+<ol type="1">
+<li>Seleccione el pago a reembolsar</li>
+<li>Haga clic en <strong>“Reembolsar”</strong></li>
+<li>Ingrese el monto a reembolsar (total o parcial)</li>
+<li>Agregue el motivo del reembolso</li>
+<li>Confirme la operación</li>
+</ol>
+<hr />
+<h2 id="mantenimiento-1">9. Mantenimiento</h2>
+<h3 id="crear-reporte-de-mantenimiento">9.1 Crear Reporte de
+Mantenimiento</h3>
+<ol type="1">
+<li><p>Vaya a <strong>“Mantenimiento”</strong></p></li>
+<li><p>Haga clic en <strong>“Nuevo Reporte”</strong></p></li>
+<li><p>Complete el formulario:</p>
+<p><strong>Información del Reporte:</strong></p>
+<ul>
+<li>Habitación afectada</li>
+<li>Título del problema</li>
+<li>Descripción detallada</li>
+<li>Tipo de mantenimiento:
+<ul>
+<li>Preventivo</li>
+<li>Correctivo</li>
+<li>Emergencia</li>
+</ul></li>
+<li>Prioridad:
+<ul>
+<li>Baja</li>
+<li>Media</li>
+<li>Alta</li>
+<li>Crítica</li>
+</ul></li>
+</ul>
+<p><strong>Planificación:</strong></p>
+<ul>
+<li>Fecha programada (opcional)</li>
+<li>Costo estimado</li>
+<li>Moneda</li>
+</ul></li>
+<li><p>Haga clic en <strong>“Crear Reporte”</strong></p></li>
+</ol>
+<h3 id="gestión-de-reportes">9.2 Gestión de Reportes</h3>
+<p>Los reportes pasan por varios estados:</p>
+<ol type="1">
+<li><strong>Pendiente:</strong> Recién creado, esperando asignación</li>
+<li><strong>Asignado:</strong> Asignado a un técnico</li>
+<li><strong>En Progreso:</strong> El técnico está trabajando</li>
+<li><strong>Completado:</strong> Trabajo finalizado</li>
+<li><strong>Cancelado:</strong> No se realizará</li>
+</ol>
+<h3 id="asignar-mantenimiento">9.3 Asignar Mantenimiento</h3>
+<ol type="1">
+<li>Seleccione un reporte pendiente</li>
+<li>Haga clic en <strong>“Asignar”</strong></li>
+<li>Seleccione el técnico responsable</li>
+<li>Confirme la asignación</li>
+</ol>
+<h3 id="iniciar-trabajo">9.4 Iniciar Trabajo</h3>
+<p>Para comenzar un trabajo:</p>
+<ol type="1">
+<li>Seleccione el reporte asignado</li>
+<li>Haga clic en <strong>“Iniciar”</strong></li>
+<li>El estado cambia a “En Progreso”</li>
+<li>La habitación se marca en mantenimiento</li>
+</ol>
+<h3 id="completar-mantenimiento">9.5 Completar Mantenimiento</h3>
+<p>Al finalizar el trabajo:</p>
+<ol type="1">
+<li>Seleccione el reporte en progreso</li>
+<li>Haga clic en <strong>“Completar”</strong></li>
+<li>Ingrese:
+<ul>
+<li>Costo real</li>
+<li>Notas de resolución</li>
+<li>Materiales utilizados</li>
+</ul></li>
+<li>Confirme la finalización</li>
+<li>La habitación vuelve a estado “Disponible”</li>
+</ol>
+<hr />
+<h2 id="inventario-1">10. Inventario</h2>
+<h3 id="agregar-item-al-inventario">10.1 Agregar Item al Inventario</h3>
+<ol type="1">
+<li><p>Vaya a <strong>“Inventario”</strong></p></li>
+<li><p>Haga clic en <strong>“Nuevo Item”</strong></p></li>
+<li><p>Complete los datos:</p>
+<p><strong>Información del Item:</strong></p>
+<ul>
+<li>Código del item</li>
+<li>Nombre</li>
+<li>Descripción</li>
+<li>Categoría:
+<ul>
+<li>Amenidades</li>
+<li>Limpieza</li>
+<li>Alimentos y bebidas</li>
+<li>Mantenimiento</li>
+<li>Oficina</li>
+</ul></li>
+<li>Unidad de medida (unidad, litro, kilo, etc.)</li>
+</ul>
+<p><strong>Control de Stock:</strong></p>
+<ul>
+<li>Cantidad actual</li>
+<li>Cantidad mínima (para alertas)</li>
+<li>Cantidad máxima</li>
+<li>Costo unitario</li>
+<li>Moneda</li>
+</ul>
+<p><strong>Proveedor:</strong></p>
+<ul>
+<li>Nombre del proveedor</li>
+<li>Contacto</li>
+<li>Ubicación de almacenamiento</li>
+</ul></li>
+<li><p>Haga clic en <strong>“Guardar”</strong></p></li>
+</ol>
+<h3 id="registrar-entrada-de-stock">10.2 Registrar Entrada de Stock</h3>
+<p>Para ingresar mercancía:</p>
+<ol type="1">
+<li>Seleccione el item</li>
+<li>Haga clic en <strong>“Entrada”</strong></li>
+<li>Ingrese:
+<ul>
+<li>Cantidad</li>
+<li>Motivo (compra, donación, ajuste)</li>
+<li>Referencia del documento</li>
+<li>Notas</li>
+</ul></li>
+<li>Confirme la operación</li>
+</ol>
+<h3 id="registrar-salida-de-stock">10.3 Registrar Salida de Stock</h3>
+<p>Para registrar uso de items:</p>
+<ol type="1">
+<li>Seleccione el item</li>
+<li>Haga clic en <strong>“Salida”</strong></li>
+<li>Ingrese:
+<ul>
+<li>Cantidad</li>
+<li>Motivo (uso, venta, pérdida, ajuste)</li>
+<li>Referencia</li>
+<li>Notas</li>
+</ul></li>
+<li>Confirme la operación</li>
+</ol>
+<h3 id="alertas-de-stock">10.4 Alertas de Stock</h3>
+<p>SIGHO genera alertas automáticas cuando: - Un item está por debajo
+del mínimo (necesita reabastecimiento) - Un item está agotado</p>
+<p>Las alertas se muestran en el Dashboard.</p>
+<h3 id="ajuste-de-inventario">10.5 Ajuste de Inventario</h3>
+<p>Para corregir errores o hacer conteos físicos:</p>
+<ol type="1">
+<li>Seleccione el item</li>
+<li>Haga clic en <strong>“Ajustar”</strong></li>
+<li>Ingrese la cantidad real actual</li>
+<li>Indique el motivo del ajuste</li>
+<li>Confirme</li>
+</ol>
+<hr />
+<h2 id="reportes">11. Reportes</h2>
+<h3 id="tipos-de-reportes">11.1 Tipos de Reportes</h3>
+<p>SIGHO ofrece varios tipos de reportes:</p>
+<h4 id="reporte-de-ocupación">Reporte de Ocupación</h4>
+<ul>
+<li>Porcentaje de ocupación por período</li>
+<li>Habitaciones más/menos reservadas</li>
+<li>Ingresos por tipo de habitación</li>
+<li>Tendencias de ocupación</li>
+</ul>
+<h4 id="reporte-de-ingresos">Reporte de Ingresos</h4>
+<ul>
+<li>Ingresos totales por período</li>
+<li>Desglose por moneda</li>
+<li>Métodos de pago utilizados</li>
+<li>Comparaciones mes a mes</li>
+</ul>
+<h4 id="reporte-de-huéspedes">Reporte de Huéspedes</h4>
+<ul>
+<li>Huéspedes nuevos vs recurrentes</li>
+<li>Nacionalidades más frecuentes</li>
+<li>Estadías promedio</li>
+<li>Preferencias de habitación</li>
+</ul>
+<h4 id="reporte-de-mantenimiento">Reporte de Mantenimiento</h4>
+<ul>
+<li>Reportes por estado</li>
+<li>Tiempo promedio de resolución</li>
+<li>Costos de mantenimiento</li>
+<li>Habitaciones con más incidencias</li>
+</ul>
+<h4 id="reporte-de-inventario">Reporte de Inventario</h4>
+<ul>
+<li>Items con stock bajo</li>
+<li>Valor total del inventario</li>
+<li>Movimientos del período</li>
+<li>Items más utilizados</li>
+</ul>
+<h3 id="generar-un-reporte">11.2 Generar un Reporte</h3>
+<ol type="1">
+<li>Vaya a <strong>“Reportes”</strong></li>
+<li>Seleccione el tipo de reporte</li>
+<li>Configure los filtros:
+<ul>
+<li>Rango de fechas</li>
+<li>Filtros específicos según el reporte</li>
+</ul></li>
+<li>Haga clic en <strong>“Generar Reporte”</strong></li>
+<li>El reporte se mostrará en pantalla</li>
+</ol>
+<h3 id="exportar-reportes">11.3 Exportar Reportes</h3>
+<p>Los reportes se pueden exportar en varios formatos:</p>
+<ol type="1">
+<li>Haga clic en <strong>“Exportar”</strong></li>
+<li>Seleccione el formato:
+<ul>
+<li>PDF</li>
+<li>Excel</li>
+<li>CSV</li>
+</ul></li>
+<li>Elija la ubicación para guardar</li>
+<li>El archivo se descargará automáticamente</li>
+</ol>
+<hr />
+<h2 id="administración-de-usuarios">12. Administración de Usuarios</h2>
+<blockquote>
+<p><strong>Nota:</strong> Esta sección solo está disponible para
+usuarios Administradores.</p>
+</blockquote>
+<h3 id="crear-nuevo-usuario">12.1 Crear Nuevo Usuario</h3>
+<ol type="1">
+<li><p>Vaya a <strong>“Usuarios”</strong></p></li>
+<li><p>Haga clic en <strong>“Nuevo Usuario”</strong></p></li>
+<li><p>Complete el formulario:</p>
+<p><strong>Información del Usuario:</strong></p>
+<ul>
+<li>Nombre completo</li>
+<li>Nombre de usuario (único)</li>
+<li>Email (único)</li>
+<li>Contraseña temporal</li>
+<li>Rol:
+<ul>
+<li>Administrador</li>
+<li>Gerente</li>
+<li>Recepcionista</li>
+<li>Mantenimiento</li>
+<li>Inventario</li>
+<li>Visor</li>
+</ul></li>
+</ul></li>
+<li><p>Haga clic en <strong>“Crear Usuario”</strong></p></li>
+<li><p>El usuario recibirá sus credenciales</p></li>
+</ol>
+<h3 id="modificar-usuario">12.2 Modificar Usuario</h3>
+<ol type="1">
+<li>Seleccione el usuario</li>
+<li>Haga clic en <strong>“Editar”</strong></li>
+<li>Modifique los datos necesarios</li>
+<li>Guarde los cambios</li>
+</ol>
+<h3 id="desactivaractivar-usuario">12.3 Desactivar/Activar Usuario</h3>
+<p>Para desactivar temporalmente un usuario:</p>
+<ol type="1">
+<li>Seleccione el usuario</li>
+<li>Haga clic en <strong>“Desactivar”</strong></li>
+<li>Confirme la acción</li>
+</ol>
+<p>El usuario no podrá acceder al sistema hasta que lo reactive.</p>
+<h3 id="cambiar-contraseña">12.4 Cambiar Contraseña</h3>
+<p>Para cambiar la contraseña de un usuario:</p>
+<ol type="1">
+<li>Seleccione el usuario</li>
+<li>Haga clic en <strong>“Cambiar Contraseña”</strong></li>
+<li>Ingrese la nueva contraseña</li>
+<li>Confirme el cambio</li>
+</ol>
+<h3 id="ver-actividad-del-usuario">12.5 Ver Actividad del Usuario</h3>
+<p>Puede revisar: - Último acceso - Historial de sesiones - Acciones
+realizadas (log de auditoría)</p>
+<hr />
+<h2 id="configuración">13. Configuración</h2>
+<h3 id="configuración-de-la-apariencia">13.1 Configuración de la
+Apariencia</h3>
+<p>Puede personalizar:</p>
+<ul>
+<li><strong>Tema:</strong> Claro u Oscuro</li>
+<li><strong>Color principal:</strong> Seleccione entre varios
+colores</li>
+<li><strong>Tamaño de fuente:</strong> Pequeño, Mediano, Grande</li>
+</ul>
+<h3 id="configuración-del-hotel">13.2 Configuración del Hotel</h3>
+<p>Configure la información de su hotel:</p>
+<ul>
+<li>Nombre del hotel</li>
+<li>Dirección</li>
+<li>Teléfono</li>
+<li>Email de contacto</li>
+<li>Sitio web</li>
+<li>Logo (opcional)</li>
+</ul>
+<h3 id="configuración-de-monedas">13.3 Configuración de Monedas</h3>
+<p>Establezca: - Moneda principal - Monedas aceptadas - Tasas de cambio
+(se actualizan manualmente)</p>
+<h3 id="configuración-de-impuestos">13.4 Configuración de Impuestos</h3>
+<p>Configure: - Porcentaje de impuesto sobre habitaciones - Porcentaje
+de servicio - Otros cargos adicionales</p>
+<h3 id="preferencias-del-sistema">13.5 Preferencias del Sistema</h3>
+<p>Ajuste: - Idioma de la interfaz - Formato de fecha y hora - Zona
+horaria - Unidades de medida</p>
+<h3 id="copias-de-seguridad">13.6 Copias de Seguridad</h3>
+<p>Es importante realizar copias de seguridad periódicas:</p>
+<ol type="1">
+<li>Vaya a <strong>“Configuración”</strong> &gt;
+<strong>“Respaldo”</strong></li>
+<li>Haga clic en <strong>“Crear Copia de Seguridad”</strong></li>
+<li>Seleccione la ubicación para guardar</li>
+<li>Espere a que complete el proceso</li>
+</ol>
+<p><strong>Recomendación:</strong> Realice copias semanales y guárdelas
+en una ubicación segura externa.</p>
+<h3 id="restaurar-desde-copia">13.7 Restaurar desde Copia</h3>
+<p>Si necesita restaurar datos:</p>
+<ol type="1">
+<li>Vaya a <strong>“Configuración”</strong> &gt;
+<strong>“Respaldo”</strong></li>
+<li>Haga clic en <strong>“Restaurar”</strong></li>
+<li>Seleccione el archivo de respaldo</li>
+<li>Confirme la restauración</li>
+<li>El sistema se reiniciará</li>
+</ol>
+<blockquote>
+<p><strong>Advertencia:</strong> La restauración sobrescribirá todos los
+datos actuales.</p>
+</blockquote>
+<hr />
+<h2 id="preguntas-frecuentes">14. Preguntas Frecuentes</h2>
+<h3 id="cómo-cambio-mi-contraseña">¿Cómo cambio mi contraseña?</h3>
+<ol type="1">
+<li>Haga clic en su nombre de usuario</li>
+<li>Seleccione “Mi Perfil”</li>
+<li>Haga clic en “Cambiar Contraseña”</li>
+<li>Ingrese su contraseña actual y la nueva</li>
+<li>Guarde los cambios</li>
+</ol>
+<h3 id="qué-hago-si-olvido-mi-contraseña">¿Qué hago si olvido mi
+contraseña?</h3>
+<p>Contacte al administrador del sistema para que le asigne una nueva
+contraseña temporal.</p>
+<h3 id="puedo-eliminar-una-reserva">¿Puedo eliminar una reserva?</h3>
+<p>Las reservas no se pueden eliminar, solo cancelar. Esto mantiene el
+historial completo para auditoría.</p>
+<h3 id="cómo-proceso-un-pago-en-efectivo-en-diferentes-monedas">¿Cómo
+proceso un pago en efectivo en diferentes monedas?</h3>
+<p>SIGHO maneja múltiples monedas. Simplemente seleccione la moneda del
+pago al registrarlo y el sistema llevará el registro correcto.</p>
+<h3 id="qué-hago-si-el-sistema-no-responde">¿Qué hago si el sistema no
+responde?</h3>
+<ol type="1">
+<li>Verifique su conexión al servidor</li>
+<li>Reinicie la aplicación</li>
+<li>Si el problema persiste, contacte al soporte técnico</li>
+</ol>
+<h3 id="los-datos-están-seguros">¿Los datos están seguros?</h3>
+<p>Sí. SIGHO utiliza: - Encriptación de contraseñas - Sesiones seguras -
+Base de datos local protegida - Sistema de permisos por rol</p>
+<h3 id="puedo-acceder-desde-otra-computadora">¿Puedo acceder desde otra
+computadora?</h3>
+<p>El frontend debe instalarse en cada computadora. El backend puede ser
+compartido en red local (configuración avanzada).</p>
+<h3 id="cómo-imprimo-un-comprobante-de-pago">¿Cómo imprimo un
+comprobante de pago?</h3>
+<ol type="1">
+<li>Vaya al pago deseado</li>
+<li>Haga clic en “Ver Detalles”</li>
+<li>Haga clic en “Imprimir Comprobante”</li>
+<li>Se abrirá la ventana de impresión de Windows</li>
+</ol>
+<h3 id="puedo-personalizar-los-precios-de-las-habitaciones">¿Puedo
+personalizar los precios de las habitaciones?</h3>
+<p>Sí. Los administradores pueden editar los tipos de habitación y
+ajustar precios en cualquier momento.</p>
+<h3 id="el-sistema-genera-facturas-automáticamente">¿El sistema genera
+facturas automáticamente?</h3>
+<p>Sí. Al registrar un pago, el sistema genera automáticamente un
+comprobante con código único.</p>
+<hr />
+<h2 id="soporte-técnico">Soporte Técnico</h2>
+<p>Si tiene problemas o preguntas no resueltas en este manual:</p>
+<p><strong>Email:</strong> soporte@sigho.com<br />
+<strong>Teléfono:</strong> +58 424 1234567<br />
+<strong>Horario:</strong> Lunes a Viernes, 8:00 AM - 6:00 PM</p>
+<hr />
+<h2 id="glosario-de-términos">Glosario de Términos</h2>
+<ul>
+<li><strong>Check-in:</strong> Entrada del huésped al hotel</li>
+<li><strong>Check-out:</strong> Salida del huésped del hotel</li>
+<li><strong>Código de confirmación:</strong> Identificador único de cada
+reserva</li>
+<li><strong>Dashboard:</strong> Pantalla principal con resumen de
+información</li>
+<li><strong>Huésped:</strong> Cliente del hotel</li>
+<li><strong>Inventario:</strong> Control de suministros y
+materiales</li>
+<li><strong>JWT:</strong> Token de seguridad para autenticación</li>
+<li><strong>Ocupación:</strong> Porcentaje de habitaciones ocupadas</li>
+<li><strong>Reserva:</strong> Apartado de habitación para fechas
+específicas</li>
+<li><strong>Token:</strong> Clave temporal de acceso al sistema</li>
+</ul>
+<hr />
+<p><strong>¡Gracias por usar SIGHO!</strong></p>
+<p>Esperamos que este sistema facilite la gestión de su hotel y mejore
+la experiencia de sus huéspedes.</p>
+<hr />
+<p><strong>Fin del Manual de Usuario</strong></p>

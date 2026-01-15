@@ -37,7 +37,7 @@ class PaymentsView(ctk.CTkFrame):
         
         ctk.CTkButton(
             btn_frame,
-            text="➕ Registrar Pago",
+            text=" Registrar Pago",
             command=self.create_payment,
             width=140,
             height=SIZES["button_height"]
@@ -45,7 +45,7 @@ class PaymentsView(ctk.CTkFrame):
         
         ctk.CTkButton(
             btn_frame,
-            text="📊 Ver Detalles",
+            text="Ver Detalles",
             command=self.view_payment_details,
             width=130,
             height=SIZES["button_height"]
@@ -53,7 +53,7 @@ class PaymentsView(ctk.CTkFrame):
         
         ctk.CTkButton(
             btn_frame,
-            text="💳 Balance Reserva",
+            text=" Balance Reserva",
             command=self.check_reservation_balance,
             width=150,
             height=SIZES["button_height"],
@@ -63,7 +63,7 @@ class PaymentsView(ctk.CTkFrame):
         
         ctk.CTkButton(
             btn_frame,
-            text="🔄 Actualizar",
+            text=" Actualizar",
             command=self.load_payments,
             width=100,
             height=SIZES["button_height"]
@@ -177,20 +177,24 @@ class PaymentsView(ctk.CTkFrame):
                 # Método de pago con icono
                 method = payment.get('payment_method', 'cash')
                 method_map = {
-                    "cash": "💵 Efectivo",
-                    "card": "💳 Tarjeta",
-                    "transfer": "🏦 Transferencia",
-                    "mobile": "📱 Pago Móvil"
+                    "cash_ves": "Efectivo VES",
+                    "cash_usd": "Efectivo USD",
+                    "cash_eur": "Efectivo EUR",
+                    "transfer": "Transferencia",
+                    "mobile_payment": "Pago Móvil",
+                    "credit_card": "Tarjeta Crédito",
+                    "debit_card": "Tarjeta Débito",
+                    "other": "Otro"
                 }
                 payment['payment_method_display'] = method_map.get(method, method)
                 
                 # Estado con icono
                 status = payment.get('status', 'completed')
                 status_map = {
-                    "completed": "✅ Completado",
-                    "pending": "⏳ Pendiente",
-                    "cancelled": "❌ Cancelado",
-                    "refunded": "↩️ Reembolsado"
+                    "completed": "Completado",
+                    "pending": "Pendiente",
+                    "cancelled": "Cancelado",
+                    "refunded": "Reembolsado"
                 }
                 payment['status_display'] = status_map.get(status, status)
                 
@@ -247,9 +251,9 @@ class PaymentsView(ctk.CTkFrame):
             amount = payment.get('amount', 0)
             currency = payment.get('currency', 'VES')
             payment['amount_display'] = self._format_amount(amount, currency)
-            method_map = {"cash": "💵 Efectivo", "card": "💳 Tarjeta", "transfer": "🏦 Transferencia", "mobile": "📱 Pago Móvil"}
+            method_map = {"cash_ves": "Efectivo VES", "cash_usd": "Efectivo USD", "cash_eur": "Efectivo EUR", "transfer": "Transferencia", "mobile_payment": "Pago Móvil", "credit_card": "Tarjeta Crédito", "debit_card": "Tarjeta Débito", "other": "Otro"}
             payment['payment_method_display'] = method_map.get(payment.get('payment_method', 'cash'), 'N/A')
-            status_map = {"completed": "✅ Completado", "pending": "⏳ Pendiente", "cancelled": "❌ Cancelado", "refunded": "↩️ Reembolsado"}
+            status_map = {"completed": "Completado", "pending": "Pendiente", "cancelled": "Cancelado", "refunded": "Reembolsado"}
             payment['status_display'] = status_map.get(payment.get('status', 'completed'), 'N/A')
             payment_date = payment.get('payment_date', '')
             if payment_date and len(payment_date) > 10:
@@ -306,7 +310,7 @@ Notas:
             {"name": "currency", "label": "Moneda", "type": "combobox",
              "values": ["VES", "USD", "EUR"], "required": True, "default": "VES"},
             {"name": "payment_method", "label": "Método de Pago", "type": "combobox",
-             "values": ["cash", "card", "transfer", "mobile"], "required": True},
+             "values": ["cash_ves", "cash_usd", "cash_eur", "transfer", "mobile_payment", "credit_card", "debit_card", "other"], "required": True},
             {"name": "reference", "label": "Referencia/Comprobante", "type": "entry"},
             {"name": "notes", "label": "Notas", "type": "textarea", "height": 80}
         ]
@@ -367,7 +371,7 @@ Notas:
                     paid = reservation.get('paid_amount', 0)
                     balance = total - paid
                     
-                    status = "✅ Pagado" if balance <= 0 else "⚠️ Pendiente"
+                    status = "Pagado" if balance <= 0 else "Pendiente"
                     
                     details = f"""
 Balance de Reserva

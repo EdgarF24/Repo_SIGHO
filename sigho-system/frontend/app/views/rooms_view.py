@@ -36,7 +36,7 @@ class RoomsView(ctk.CTkFrame):
         
         ctk.CTkButton(
             btn_frame,
-            text="➕ Nueva Habitación",
+            text=" Nueva Habitación",
             command=self.create_room,
             width=150,
             height=SIZES["button_height"]
@@ -44,7 +44,7 @@ class RoomsView(ctk.CTkFrame):
         
         ctk.CTkButton(
             btn_frame,
-            text="✏️ Editar",
+            text="Editar",
             command=self.edit_room,
             width=100,
             height=SIZES["button_height"]
@@ -52,7 +52,7 @@ class RoomsView(ctk.CTkFrame):
         
         ctk.CTkButton(
             btn_frame,
-            text="🔄 Cambiar Estado",
+            text=" Cambiar Estado",
             command=self.change_status,
             width=140,
             height=SIZES["button_height"],
@@ -62,7 +62,7 @@ class RoomsView(ctk.CTkFrame):
         
         ctk.CTkButton(
             btn_frame,
-            text="🗑️ Eliminar",
+            text="Eliminar",
             command=self.delete_room,
             width=100,
             height=SIZES["button_height"],
@@ -72,7 +72,7 @@ class RoomsView(ctk.CTkFrame):
         
         ctk.CTkButton(
             btn_frame,
-            text="🔄 Actualizar",
+            text=" Actualizar",
             command=self.load_rooms,
             width=100,
             height=SIZES["button_height"]
@@ -148,16 +148,16 @@ class RoomsView(ctk.CTkFrame):
                 # Estado con emoji
                 status = room.get('status', 'available')
                 status_map = {
-                    "available": "✅ Disponible",
-                    "occupied": "🏨 Ocupada",
-                    "cleaning": "🧹 Limpieza",
-                    "maintenance": "🔧 Mantenimiento",
-                    "out_of_service": "⚠️ Fuera de servicio"
+                    "available": "Disponible",
+                    "occupied": "Ocupada",
+                    "cleaning": "Limpieza",
+                    "maintenance": "Mantenimiento",
+                    "out_of_service": "Fuera de servicio"
                 }
                 room['status_display'] = status_map.get(status, status)
                 
                 # Activa
-                room['is_active_display'] = "✅ Sí" if room.get('is_active', True) else "❌ No"
+                room['is_active_display'] = "Sí" if room.get('is_active', True) else "No"
                 
                 # Contar
                 if status in counts:
@@ -187,9 +187,9 @@ class RoomsView(ctk.CTkFrame):
         """Formatea y carga datos"""
         for room in rooms:
             room['room_type_name'] = room.get('room_type', {}).get('name', 'N/A')
-            status_map = {"available": "✅ Disponible", "occupied": "🏨 Ocupada", "cleaning": "🧹 Limpieza", "maintenance": "🔧 Mantenimiento", "out_of_service": "⚠️ Fuera de servicio"}
+            status_map = {"available": "Disponible", "occupied": "Ocupada", "cleaning": "Limpieza", "maintenance": "Mantenimiento", "out_of_service": "Fuera de servicio"}
             room['status_display'] = status_map.get(room.get('status', 'available'), 'N/A')
-            room['is_active_display'] = "✅ Sí" if room.get('is_active', True) else "❌ No"
+            room['is_active_display'] = "Sí" if room.get('is_active', True) else "No"
         
         self.table.load_data(rooms)
         self.total_rooms_label.configure(text=f"Resultados: {len(rooms)}")

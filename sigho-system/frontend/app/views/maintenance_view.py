@@ -39,7 +39,7 @@ class MaintenanceView(ctk.CTkFrame):
         
         ctk.CTkButton(
             btn_frame,
-            text="➕ Nueva Solicitud",
+            text=" Nueva Solicitud",
             command=self.create_maintenance,
             width=140,
             height=SIZES["button_height"]
@@ -47,7 +47,7 @@ class MaintenanceView(ctk.CTkFrame):
         
         ctk.CTkButton(
             btn_frame,
-            text="✏️ Editar",
+            text="Editar",
             command=self.edit_maintenance,
             width=90,
             height=SIZES["button_height"]
@@ -55,7 +55,7 @@ class MaintenanceView(ctk.CTkFrame):
         
         ctk.CTkButton(
             btn_frame,
-            text="👤 Asignar",
+            text=" Asignar",
             command=self.assign_technician,
             width=90,
             height=SIZES["button_height"]
@@ -63,7 +63,7 @@ class MaintenanceView(ctk.CTkFrame):
         
         ctk.CTkButton(
             btn_frame,
-            text="▶️ Iniciar",
+            text="Iniciar",
             command=self.start_maintenance,
             width=90,
             height=SIZES["button_height"],
@@ -73,7 +73,7 @@ class MaintenanceView(ctk.CTkFrame):
         
         ctk.CTkButton(
             btn_frame,
-            text="✅ Completar",
+            text="Completar",
             command=self.complete_maintenance,
             width=110,
             height=SIZES["button_height"],
@@ -83,7 +83,7 @@ class MaintenanceView(ctk.CTkFrame):
         
         ctk.CTkButton(
             btn_frame,
-            text="❌ Cancelar",
+            text="Cancelar",
             command=self.cancel_maintenance,
             width=100,
             height=SIZES["button_height"],
@@ -93,7 +93,7 @@ class MaintenanceView(ctk.CTkFrame):
         
         ctk.CTkButton(
             btn_frame,
-            text="🔄 Actualizar",
+            text=" Actualizar",
             command=self.load_maintenance,
             width=100,
             height=SIZES["button_height"]
@@ -191,18 +191,18 @@ class MaintenanceView(ctk.CTkFrame):
                     "low": "🟢 Baja",
                     "medium": "🟡 Media",
                     "high": "🟠 Alta",
-                    "urgent": "🔴 Urgente"
+                    "urgent": " Urgente"
                 }
                 maint['priority_display'] = priority_map.get(priority, priority)
                 
                 # Estado con emoji
                 status = maint.get('status', 'pending')
                 status_map = {
-                    "pending": "⏳ Pendiente",
-                    "assigned": "👤 Asignado",
-                    "in_progress": "⚙️ En Progreso",
-                    "completed": "✅ Completado",
-                    "cancelled": "❌ Cancelado"
+                    "pending": "Pendiente",
+                    "assigned": " Asignado",
+                    "in_progress": "En Progreso",
+                    "completed": "Completado",
+                    "cancelled": "Cancelado"
                 }
                 maint['status_display'] = status_map.get(status, status)
                 
@@ -248,9 +248,9 @@ class MaintenanceView(ctk.CTkFrame):
         """Formatea y carga los datos"""
         for maint in maintenances:
             maint['room_number'] = f"Hab. {maint.get('room_id', 'N/A')}"
-            priority_map = {"low": "🟢 Baja", "medium": "🟡 Media", "high": "🟠 Alta", "urgent": "🔴 Urgente"}
+            priority_map = {"low": "🟢 Baja", "medium": "🟡 Media", "high": "🟠 Alta", "urgent": " Urgente"}
             maint['priority_display'] = priority_map.get(maint.get('priority', 'low'), 'N/A')
-            status_map = {"pending": "⏳ Pendiente", "assigned": "👤 Asignado", "in_progress": "⚙️ En Progreso", "completed": "✅ Completado", "cancelled": "❌ Cancelado"}
+            status_map = {"pending": "Pendiente", "assigned": " Asignado", "in_progress": "En Progreso", "completed": "Completado", "cancelled": "Cancelado"}
             maint['status_display'] = status_map.get(maint.get('status', 'pending'), 'N/A')
             maint['assigned_to_name'] = maint.get('assigned_to_name', '-')
         

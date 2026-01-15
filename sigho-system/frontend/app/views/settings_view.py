@@ -26,7 +26,7 @@ class SettingsView(ctk.CTkFrame):
         
         ctk.CTkLabel(
             title_frame,
-            text="⚙️ Configuración del Sistema",
+            text="Configuración del Sistema",
             font=("Segoe UI", 28, "bold")
         ).pack(anchor="w")
         
@@ -42,7 +42,7 @@ class SettingsView(ctk.CTkFrame):
         
         ctk.CTkLabel(
             appearance_frame,
-            text="🎨 Apariencia",
+            text="Apariencia",
             font=FONTS["heading"]
         ).grid(row=0, column=0, columnspan=2, sticky="w", padx=20, pady=(15, 10))
         
@@ -59,7 +59,7 @@ class SettingsView(ctk.CTkFrame):
         
         ctk.CTkRadioButton(
             theme_frame,
-            text="🌙 Oscuro",
+            text=" Oscuro",
             variable=self.theme_var,
             value="dark",
             command=self.change_theme,
@@ -68,7 +68,7 @@ class SettingsView(ctk.CTkFrame):
         
         ctk.CTkRadioButton(
             theme_frame,
-            text="☀️ Claro",
+            text="Claro",
             variable=self.theme_var,
             value="light",
             command=self.change_theme,
@@ -77,7 +77,7 @@ class SettingsView(ctk.CTkFrame):
         
         ctk.CTkRadioButton(
             theme_frame,
-            text="⚙️ Sistema",
+            text="Sistema",
             variable=self.theme_var,
             value="system",
             command=self.change_theme,
@@ -94,7 +94,7 @@ class SettingsView(ctk.CTkFrame):
         
         ctk.CTkLabel(
             info_frame,
-            text="ℹ️ Información del Sistema",
+            text="Información del Sistema",
             font=FONTS["heading"]
         ).grid(row=0, column=0, columnspan=2, sticky="w", padx=20, pady=(15, 10))
         
@@ -131,7 +131,7 @@ class SettingsView(ctk.CTkFrame):
         
         ctk.CTkLabel(
             preferences_frame,
-            text="🔧 Preferencias",
+            text="Preferencias",
             font=FONTS["heading"]
         ).grid(row=0, column=0, columnspan=2, sticky="w", padx=20, pady=(15, 10))
         
@@ -184,7 +184,7 @@ class SettingsView(ctk.CTkFrame):
         # Guardar preferencias
         ctk.CTkButton(
             preferences_frame,
-            text="💾 Guardar Preferencias",
+            text=" Guardar Preferencias",
             command=self.save_preferences,
             height=35
         ).grid(row=4, column=0, columnspan=2, padx=20, pady=(15, 10))
@@ -198,7 +198,7 @@ class SettingsView(ctk.CTkFrame):
         
         ctk.CTkLabel(
             actions_frame,
-            text="🔨 Acciones",
+            text=" Acciones",
             font=FONTS["heading"]
         ).grid(row=0, column=0, sticky="w", padx=20, pady=(15, 10))
         
@@ -207,7 +207,7 @@ class SettingsView(ctk.CTkFrame):
         
         ctk.CTkButton(
             buttons_frame,
-            text="🗑️ Limpiar Caché",
+            text="Limpiar Caché",
             command=self.clear_cache,
             width=180,
             height=35
@@ -215,7 +215,7 @@ class SettingsView(ctk.CTkFrame):
         
         ctk.CTkButton(
             buttons_frame,
-            text="🚪 Cerrar Sesión",
+            text=" Cerrar Sesión",
             command=self.logout,
             width=180,
             height=35,
@@ -232,7 +232,7 @@ class SettingsView(ctk.CTkFrame):
         
         ctk.CTkLabel(
             about_frame,
-            text="📝 Acerca de",
+            text="Acerca de",
             font=FONTS["heading"]
         ).pack(anchor="w", padx=20, pady=(15, 10))
         

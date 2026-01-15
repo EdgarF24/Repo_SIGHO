@@ -39,7 +39,7 @@ class ReservationsView(ctk.CTkFrame):
         
         ctk.CTkButton(
             btn_frame,
-            text="➕ Nueva Reserva",
+            text=" Nueva Reserva",
             command=self.create_reservation,
             width=140,
             height=SIZES["button_height"]
@@ -47,7 +47,7 @@ class ReservationsView(ctk.CTkFrame):
         
         ctk.CTkButton(
             btn_frame,
-            text="✏️ Editar",
+            text="Editar",
             command=self.edit_reservation,
             width=100,
             height=SIZES["button_height"]
@@ -55,7 +55,7 @@ class ReservationsView(ctk.CTkFrame):
         
         ctk.CTkButton(
             btn_frame,
-            text="📥 Check-in",
+            text=" Check-in",
             command=self.checkin_reservation,
             width=100,
             height=SIZES["button_height"],
@@ -64,7 +64,7 @@ class ReservationsView(ctk.CTkFrame):
         
         ctk.CTkButton(
             btn_frame,
-            text="📤 Check-out",
+            text=" Check-out",
             command=self.checkout_reservation,
             width=100,
             height=SIZES["button_height"],
@@ -73,7 +73,7 @@ class ReservationsView(ctk.CTkFrame):
         
         ctk.CTkButton(
             btn_frame,
-            text="❌ Cancelar",
+            text="Cancelar",
             command=self.cancel_reservation,
             width=100,
             height=SIZES["button_height"],
@@ -82,7 +82,7 @@ class ReservationsView(ctk.CTkFrame):
         
         ctk.CTkButton(
             btn_frame,
-            text="🔄 Actualizar",
+            text=" Actualizar",
             command=self.load_reservations,
             width=100,
             height=SIZES["button_height"]
@@ -94,7 +94,7 @@ class ReservationsView(ctk.CTkFrame):
         
         self.search_entry = ctk.CTkEntry(
             search_frame,
-            placeholder_text="🔍 Buscar por código, huésped o habitación...",
+            placeholder_text="Buscar por código, huésped o habitación...",
             width=300
         )
         self.search_entry.pack(side="left", padx=5)
@@ -158,12 +158,12 @@ class ReservationsView(ctk.CTkFrame):
     def format_status(self, status: str) -> str:
         """Formatea el estado de la reserva"""
         status_map = {
-            "pending": "⏳ Pendiente",
-            "confirmed": "✅ Confirmada",
-            "checked_in": "🏨 Check-in",
-            "checked_out": "📤 Check-out",
-            "cancelled": "❌ Cancelada",
-            "no_show": "⚠️ No Show"
+            "pending": "Pendiente",
+            "confirmed": "Confirmada",
+            "checked_in": "Check-in",
+            "checked_out": " Check-out",
+            "cancelled": "Cancelada",
+            "no_show": "No Show"
         }
         return status_map.get(status, status)
     

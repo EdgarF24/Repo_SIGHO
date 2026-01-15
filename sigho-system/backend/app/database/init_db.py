@@ -22,10 +22,10 @@ def init_db(db: Session) -> None:
     # Verificar si ya existen usuarios
     existing_user = db.query(User).first()
     if existing_user:
-        print("⚠️  La base de datos ya contiene datos. Omitiendo inicialización.")
+        print("[INFO] La base de datos ya contiene datos. Omitiendo inicializacion.")
         return
     
-    print("🔧 Creando datos iniciales...")
+    print("[INFO] Creando datos iniciales...")
     
     # ========== USUARIOS ==========
     users_data = [
@@ -47,7 +47,7 @@ def init_db(db: Session) -> None:
         {
             "username": "recepcion",
             "email": "recepcion@hotelsigho.com",
-            "full_name": "María Recepción",
+            "full_name": "Maria Recepcion",
             "password": "recepcion123",
             "role": UserRole.RECEPTIONIST
         },
@@ -73,13 +73,13 @@ def init_db(db: Session) -> None:
         db.add(user)
     
     db.commit()
-    print("✅ Usuarios creados")
+    print("[OK] Usuarios creados")
     
-    # ========== TIPOS DE HABITACIÓN ==========
+    # ========== TIPOS DE HABITACION ==========
     room_types_data = [
         {
             "name": "Individual",
-            "description": "Habitación individual con cama sencilla",
+            "description": "Habitacion individual con cama sencilla",
             "capacity": 1,
             "base_price_ves": 50000.0,
             "base_price_usd": 25.0,
@@ -92,7 +92,7 @@ def init_db(db: Session) -> None:
         },
         {
             "name": "Doble",
-            "description": "Habitación doble con cama matrimonial",
+            "description": "Habitacion doble con cama matrimonial",
             "capacity": 2,
             "base_price_ves": 80000.0,
             "base_price_usd": 40.0,
@@ -105,7 +105,7 @@ def init_db(db: Session) -> None:
         },
         {
             "name": "Triple",
-            "description": "Habitación triple con tres camas",
+            "description": "Habitacion triple con tres camas",
             "capacity": 3,
             "base_price_ves": 120000.0,
             "base_price_usd": 60.0,
@@ -153,7 +153,7 @@ def init_db(db: Session) -> None:
         room_types.append(rt)
     
     db.commit()
-    print("✅ Tipos de habitación creados")
+    print("[OK] Tipos de habitacion creados")
     
     # ========== HABITACIONES ==========
     floors = [1, 2, 3, 4, 5]
@@ -217,12 +217,12 @@ def init_db(db: Session) -> None:
         db.add(room)
     
     db.commit()
-    print("✅ Habitaciones creadas")
+    print("[OK] Habitaciones creadas")
     
-    print("🎉 Base de datos inicializada correctamente!")
-    print("\n📝 Credenciales de acceso:")
+    print("[SUCCESS] Base de datos inicializada correctamente!")
+    print("\n[INFO] Credenciales de acceso:")
     print("   Admin: admin / admin123")
     print("   Gerente: gerente / gerente123")
-    print("   Recepción: recepcion / recepcion123")
+    print("   Recepcion: recepcion / recepcion123")
     print("   Mantenimiento: mantenimiento / manten123")
     print("   Inventario: inventario / inventario123")

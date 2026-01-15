@@ -1,5 +1,5 @@
 """
-Sistema Integrado de Gestión Hotelera (SIGHO)
+Sistema Integrado de Gestion Hotelera (SIGHO)
 Backend FastAPI + SQLite3
 """
 from fastapi import FastAPI
@@ -26,18 +26,18 @@ from app.api.endpoints import (
     dashboard
 )
 
-# Crear aplicación FastAPI
+# Crear aplicacion FastAPI
 app = FastAPI(
     title=settings.APP_NAME,
     version=settings.APP_VERSION,
-    description="API REST para el Sistema Integrado de Gestión Hotelera",
+    description="API REST para el Sistema Integrado de Gestion Hotelera",
     debug=settings.DEBUG
 )
 
 # Configurar CORS
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # En producción, especificar los orígenes permitidos
+    allow_origins=["*"],  # En produccion, especificar los origenes permitidos
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -46,8 +46,8 @@ app.add_middleware(
 
 @app.on_event("startup")
 async def startup_event():
-    """Evento que se ejecuta al iniciar la aplicación"""
-    print(f"🚀 Iniciando {settings.APP_NAME} v{settings.APP_VERSION}")
+    """Evento que se ejecuta al iniciar la aplicacion"""
+    print(f"Iniciando {settings.APP_NAME} v{settings.APP_VERSION}")
     
     # Crear tablas si no existen
     Base.metadata.create_all(bind=engine)
@@ -61,13 +61,13 @@ async def startup_event():
     finally:
         db.close()
     
-    print(f"✅ Servidor iniciado en http://{settings.HOST}:{settings.PORT}")
-    print(f"📚 Documentación API: http://{settings.HOST}:{settings.PORT}/docs")
+    print(f"[OK] Servidor iniciado en http://{settings.HOST}:{settings.PORT}")
+    print(f"[DOCS] Documentacion API: http://{settings.HOST}:{settings.PORT}/docs")
 
 
 @app.get("/")
 async def root():
-    """Endpoint raíz"""
+    """Endpoint raiz"""
     return {
         "message": f"Bienvenido a {settings.APP_NAME}",
         "version": settings.APP_VERSION,
@@ -78,7 +78,7 @@ async def root():
 
 @app.get("/health")
 async def health_check():
-    """Verificación de salud del sistema"""
+    """Verificacion de salud del sistema"""
     return {
         "status": "healthy",
         "app": settings.APP_NAME,
@@ -87,13 +87,13 @@ async def health_check():
 
 
 # Incluir routers
-app.include_router(auth.router, prefix="/api/auth", tags=["Autenticación"])
+app.include_router(auth.router, prefix="/api/auth", tags=["Autenticacion"])
 app.include_router(users.router, prefix="/api/users", tags=["Usuarios"])
 app.include_router(amenities.router, prefix="/api/amenities", tags=["Amenidades"])
-app.include_router(room_types.router, prefix="/api/room-types", tags=["Tipos de Habitación"])
+app.include_router(room_types.router, prefix="/api/room-types", tags=["Tipos de Habitacion"])
 app.include_router(rooms.router, prefix="/api/rooms", tags=["Habitaciones"])
 app.include_router(reservations.router, prefix="/api/reservations", tags=["Reservas"])
-app.include_router(guests.router, prefix="/api/guests", tags=["Huéspedes"])
+app.include_router(guests.router, prefix="/api/guests", tags=["Huespedes"])
 app.include_router(payments.router, prefix="/api/payments", tags=["Pagos"])
 app.include_router(maintenance.router, prefix="/api/maintenance", tags=["Mantenimiento"])
 app.include_router(inventory.router, prefix="/api/inventory", tags=["Inventario"])

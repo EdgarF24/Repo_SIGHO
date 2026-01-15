@@ -30,7 +30,7 @@ class ReportsView(ctk.CTkFrame):
         
         ctk.CTkLabel(
             title_frame,
-            text="📈 Reportes y Estadísticas",
+            text=" Reportes y Estadísticas",
             font=("Segoe UI", 28, "bold")
         ).pack(side="left")
         
@@ -40,12 +40,12 @@ class ReportsView(ctk.CTkFrame):
         reports_frame.grid_columnconfigure((0, 1, 2), weight=1)
         
         reports = [
-            ("📊 Ocupación", self.occupancy_report, "#3498db"),
-            ("💰 Ingresos", self.revenue_report, "#27ae60"),
-            ("📅 Reservas", self.reservations_report, "#9b59b6"),
-            ("🔧 Mantenimiento", self.maintenance_report, "#e67e22"),
-            ("📦 Inventario", self.inventory_report, "#f39c12"),
-            ("👥 Huéspedes", self.guests_report, "#1abc9c")
+            ("Ocupación", self.occupancy_report, "#3498db"),
+            (" Ingresos", self.revenue_report, "#27ae60"),
+            (" Reservas", self.reservations_report, "#9b59b6"),
+            ("Mantenimiento", self.maintenance_report, "#e67e22"),
+            ("Inventario", self.inventory_report, "#f39c12"),
+            (" Huéspedes", self.guests_report, "#1abc9c")
         ]
         
         row = 0
@@ -86,7 +86,7 @@ class ReportsView(ctk.CTkFrame):
         
         export_btn = ctk.CTkButton(
             results_toolbar,
-            text="💾 Exportar",
+            text=" Exportar",
             command=self.export_report,
             width=120,
             height=35
@@ -155,7 +155,7 @@ class ReportsView(ctk.CTkFrame):
                 self.results_table.update_columns(columns)
                 self.results_table.load_data(table_data)
                 self.current_report_data = table_data
-                self.results_title.configure(text="📊 Reporte de Ocupación")
+                self.results_title.configure(text="Reporte de Ocupación")
                 
         except Exception as e:
             messagebox.showerror("Error", f"Error al generar reporte:\n{str(e)}")
@@ -192,7 +192,7 @@ class ReportsView(ctk.CTkFrame):
                 self.results_table.update_columns(columns)
                 self.results_table.load_data(table_data)
                 self.current_report_data = table_data
-                self.results_title.configure(text="💰 Reporte de Ingresos")
+                self.results_title.configure(text=" Reporte de Ingresos")
                 
         except Exception as e:
             messagebox.showerror("Error", f"Error al generar reporte:\n{str(e)}")
@@ -228,7 +228,7 @@ class ReportsView(ctk.CTkFrame):
                 self.results_table.update_columns(columns)
                 self.results_table.load_data(table_data)
                 self.current_report_data = table_data
-                self.results_title.configure(text="📅 Reporte de Reservas")
+                self.results_title.configure(text=" Reporte de Reservas")
                 
         except Exception as e:
             messagebox.showerror("Error", f"Error al generar reporte:\n{str(e)}")
@@ -261,7 +261,7 @@ class ReportsView(ctk.CTkFrame):
             self.results_table.update_columns(columns)
             self.results_table.load_data(table_data)
             self.current_report_data = table_data
-            self.results_title.configure(text="🔧 Reporte de Mantenimiento")
+            self.results_title.configure(text="Reporte de Mantenimiento")
             
         except Exception as e:
             messagebox.showerror("Error", f"Error al generar reporte:\n{str(e)}")
@@ -293,7 +293,7 @@ class ReportsView(ctk.CTkFrame):
             self.results_table.update_columns(columns)
             self.results_table.load_data(table_data)
             self.current_report_data = table_data
-            self.results_title.configure(text="📦 Reporte de Inventario")
+            self.results_title.configure(text="Reporte de Inventario")
             
         except Exception as e:
             messagebox.showerror("Error", f"Error al generar reporte:\n{str(e)}")
@@ -325,7 +325,7 @@ class ReportsView(ctk.CTkFrame):
             self.results_table.update_columns(columns)
             self.results_table.load_data(table_data)
             self.current_report_data = table_data
-            self.results_title.configure(text="👥 Reporte de Huéspedes")
+            self.results_title.configure(text=" Reporte de Huéspedes")
             
         except Exception as e:
             messagebox.showerror("Error", f"Error al generar reporte:\n{str(e)}")

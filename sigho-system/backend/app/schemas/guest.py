@@ -55,6 +55,11 @@ class GuestResponse(GuestBase):
         from_attributes = True
 
 
+class GuestInDB(GuestResponse):
+    """Schema de huésped en base de datos"""
+    pass
+
+
 class GuestSearch(BaseModel):
     """Schema para buscar huéspedes"""
     query: str = Field(..., min_length=2)  # Buscar por nombre, documento, email, teléfono

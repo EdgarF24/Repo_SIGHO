@@ -1,0 +1,732 @@
+<h1 id="sigho---documentación-técnica">SIGHO - Documentación
+Técnica</h1>
+<h2 id="sistema-integrado-de-gestión-hotelera">Sistema Integrado de
+Gestión Hotelera</h2>
+<p><strong>Versión:</strong> 1.0.0<br />
+<strong>Fecha:</strong> Diciembre 2025<br />
+<strong>Plataforma:</strong> Windows<br />
+<strong>Python:</strong> 3.12+</p>
+<hr />
+<h2 id="tabla-de-contenidos">Tabla de Contenidos</h2>
+<ol type="1">
+<li><a href="#1-introducción">Introducción</a></li>
+<li><a href="#2-arquitectura-del-sistema">Arquitectura del
+Sistema</a></li>
+<li><a href="#3-requisitos-del-sistema">Requisitos del Sistema</a></li>
+<li><a href="#4-instalación">Instalación</a></li>
+<li><a href="#5-estructura-del-proyecto">Estructura del
+Proyecto</a></li>
+<li><a href="#6-backend-api">Backend API</a></li>
+<li><a href="#7-frontend-gui">Frontend GUI</a></li>
+<li><a href="#8-base-de-datos">Base de Datos</a></li>
+<li><a href="#9-autenticación-y-seguridad">Autenticación y
+Seguridad</a></li>
+<li><a href="#10-guía-de-desarrollo">Guía de Desarrollo</a></li>
+<li><a href="#11-api-reference">API Reference</a></li>
+<li><a href="#12-troubleshooting">Troubleshooting</a></li>
+</ol>
+<hr />
+<h2 id="introducción">1. Introducción</h2>
+<h3 id="descripción-del-sistema">1.1 Descripción del Sistema</h3>
+<p>SIGHO es un sistema completo de gestión hotelera desarrollado en
+Python que combina: - <strong>Backend:</strong> API REST construida con
+FastAPI - <strong>Frontend:</strong> Interfaz gráfica usando
+CustomTkinter - <strong>Base de Datos:</strong> SQLite3 para
+persistencia de datos</p>
+<h3 id="características-principales">1.2 Características
+Principales</h3>
+<ul>
+<li>Gestión de usuarios con roles y permisos</li>
+<li>Administración de habitaciones y tipos de habitación</li>
+<li>Sistema de reservas con códigos de confirmación</li>
+<li>Gestión de huéspedes y su información</li>
+<li>Procesamiento de pagos en múltiples monedas (VES, USD, EUR)</li>
+<li>Control de mantenimiento de habitaciones</li>
+<li>Inventario de suministros</li>
+<li>Generación de reportes</li>
+<li>Dashboard con estadísticas en tiempo real</li>
+</ul>
+<hr />
+<h2 id="arquitectura-del-sistema">2. Arquitectura del Sistema</h2>
+<h3 id="diagrama-de-arquitectura">2.1 Diagrama de Arquitectura</h3>
+<pre><code>[Frontend CustomTkinter] &lt;--HTTP--&gt; [Backend FastAPI] &lt;--&gt; [SQLite Database]
+         |                              |
+    [Views/Components]            [Endpoints/Services]
+                                        |
+                                   [Models/Schemas]</code></pre>
+<h3 id="componentes-principales">2.2 Componentes Principales</h3>
+<h4 id="backend-fastapi">Backend (FastAPI)</h4>
+<ul>
+<li><strong>API REST:</strong> endpoints para todas las operaciones
+CRUD</li>
+<li><strong>Autenticación:</strong> JWT tokens para seguridad</li>
+<li><strong>ORM:</strong> SQLAlchemy para mapeo objeto-relacional</li>
+<li><strong>Validación:</strong> Pydantic para validación de datos</li>
+<li><strong>Documentación:</strong> Swagger UI generada
+automáticamente</li>
+</ul>
+<h4 id="frontend-customtkinter">Frontend (CustomTkinter)</h4>
+<ul>
+<li><strong>GUI moderna:</strong> Interfaz gráfica con tema
+oscuro/claro</li>
+<li><strong>Vistas modulares:</strong> Componentes reutilizables</li>
+<li><strong>Cliente API:</strong> Comunicación HTTP con el backend</li>
+<li><strong>Gestión de sesión:</strong> Persistencia de sesión de
+usuario</li>
+</ul>
+<h4 id="base-de-datos-sqlite3">Base de Datos (SQLite3)</h4>
+<ul>
+<li><strong>Tablas:</strong> 11 tablas principales</li>
+<li><strong>Relaciones:</strong> Claves foráneas y constraints</li>
+<li><strong>Índices:</strong> Optimización de consultas frecuentes</li>
+</ul>
+<hr />
+<h2 id="requisitos-del-sistema">3. Requisitos del Sistema</h2>
+<h3 id="hardware-mínimo">3.1 Hardware Mínimo</h3>
+<ul>
+<li><strong>Procesador:</strong> Intel Core i3 o equivalente</li>
+<li><strong>RAM:</strong> 4 GB</li>
+<li><strong>Disco:</strong> 500 MB libres</li>
+<li><strong>Pantalla:</strong> 1366x768 mínimo</li>
+</ul>
+<h3 id="software-requerido">3.2 Software Requerido</h3>
+<ul>
+<li><strong>OS:</strong> Windows 10/11</li>
+<li><strong>Python:</strong> 3.12.0 o superior</li>
+<li><strong>PowerShell:</strong> 5.1 o superior (incluido en
+Windows)</li>
+</ul>
+<h3 id="dependencias-python">3.3 Dependencias Python</h3>
+<h4 id="backend">Backend</h4>
+<pre><code>fastapi==0.123.5
+uvicorn==0.38.0
+sqlalchemy==2.0.44
+pydantic==2.12.5
+pydantic-settings==2.12.0
+python-jose==3.5.0
+passlib==1.7.4
+python-multipart==0.0.20
+email-validator==2.3.0
+bcrypt==5.0.0</code></pre>
+<h4 id="frontend">Frontend</h4>
+<pre><code>customtkinter==5.2.2
+pillow==12.0.0
+requests==2.32.5
+python-dotenv==1.2.1</code></pre>
+<hr />
+<h2 id="instalación">4. Instalación</h2>
+<h3 id="instalación-rápida">4.1 Instalación Rápida</h3>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode powershell"><code class="sourceCode powershell"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Clonar/descargar el repositorio</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cd</span> C<span class="op">:</span>\Users\tu_usuario\Documents\SIGHO\SIGHO-</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. Ejecutar script de instalación</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="fu">cd</span> sigho-system</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="op">.</span>\install_sigho<span class="op">.</span><span class="fu">ps1</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. Iniciar el sistema</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="op">.</span>\start_sigho<span class="op">.</span><span class="fu">ps1</span></span></code></pre></div>
+<h3 id="instalación-manual">4.2 Instalación Manual</h3>
+<h4 id="paso-1-instalar-python-3.12">Paso 1: Instalar Python 3.12</h4>
+<ol type="1">
+<li>Descargar desde python.org</li>
+<li>Marcar “Add Python to PATH”</li>
+<li>Completar instalación</li>
+</ol>
+<h4 id="paso-2-configurar-backend">Paso 2: Configurar Backend</h4>
+<div class="sourceCode" id="cb5"><pre
+class="sourceCode powershell"><code class="sourceCode powershell"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cd</span> backend</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>py <span class="op">-</span><span class="dv">3.12</span> <span class="op">-</span>m venv venv</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>venv\Scripts\activate</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>pip install <span class="op">-</span>r requirements<span class="op">.</span><span class="fu">txt</span></span></code></pre></div>
+<h4 id="paso-3-configurar-frontend">Paso 3: Configurar Frontend</h4>
+<div class="sourceCode" id="cb6"><pre
+class="sourceCode powershell"><code class="sourceCode powershell"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cd</span> <span class="op">../</span>frontend</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>py <span class="op">-</span><span class="dv">3.12</span> <span class="op">-</span>m venv venv</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>venv\Scripts\activate</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>pip install <span class="op">-</span>r requirements<span class="op">.</span><span class="fu">txt</span></span></code></pre></div>
+<h4 id="paso-4-iniciar-servicios">Paso 4: Iniciar Servicios</h4>
+<div class="sourceCode" id="cb7"><pre
+class="sourceCode powershell"><code class="sourceCode powershell"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Terminal 1 - Backend</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cd</span> backend</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>venv\Scripts\activate</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>python main<span class="op">.</span><span class="fu">py</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Terminal 2 - Frontend</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="fu">cd</span> frontend</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>venv\Scripts\activate</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>python main<span class="op">.</span><span class="fu">py</span></span></code></pre></div>
+<hr />
+<h2 id="estructura-del-proyecto">5. Estructura del Proyecto</h2>
+<pre><code>sigho-system/
+├── backend/                    # Aplicación FastAPI
+│   ├── app/
+│   │   ├── api/               # Endpoints de la API
+│   │   │   ├── endpoints/     # Controladores
+│   │   │   └── dependencies/  # Dependencias compartidas
+│   │   ├── core/              # Configuración central
+│   │   ├── database/          # Setup de base de datos
+│   │   ├── models/            # Modelos SQLAlchemy
+│   │   ├── schemas/           # Schemas Pydantic
+│   │   └── services/          # Lógica de negocio
+│   ├── tests/                 # Tests unitarios
+│   ├── main.py               # Punto de entrada
+│   └── requirements.txt       # Dependencias
+│
+├── frontend/                   # Aplicación CustomTkinter
+│   ├── app/
+│   │   ├── views/            # Vistas de la aplicación
+│   │   ├── components/       # Componentes reutilizables
+│   │   ├── services/         # Servicios (API client)
+│   │   └── utils/            # Utilidades
+│   ├── config/               # Configuración
+│   ├── main.py              # Punto de entrada
+│   └── requirements.txt      # Dependencias
+│
+├── docs/                       # Documentación
+├── install_sigho.ps1          # Script de instalación
+├── start_sigho.ps1            # Script de inicio
+├── clean.ps1                  # Script de limpieza
+└── README.md                  # Readme del proyecto</code></pre>
+<hr />
+<h2 id="backend-api">6. Backend API</h2>
+<h3 id="arquitectura-del-backend">6.1 Arquitectura del Backend</h3>
+<h4 id="capas-de-la-aplicación">Capas de la Aplicación</h4>
+<ol type="1">
+<li><strong>Capa de Presentación</strong> (Endpoints)
+<ul>
+<li>Recibe requests HTTP</li>
+<li>Valida entrada con Pydantic</li>
+<li>Retorna responses JSON</li>
+</ul></li>
+<li><strong>Capa de Negocio</strong> (Services)
+<ul>
+<li>Lógica de negocio</li>
+<li>Validaciones complejas</li>
+<li>Orquestación de operaciones</li>
+</ul></li>
+<li><strong>Capa de Datos</strong> (Models)
+<ul>
+<li>Modelos SQLAlchemy</li>
+<li>Operaciones CRUD</li>
+<li>Relaciones entre entidades</li>
+</ul></li>
+</ol>
+<h3 id="configuración">6.2 Configuración</h3>
+<p>Archivo: <code>backend/app/core/config.py</code></p>
+<div class="sourceCode" id="cb9"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Settings(BaseSettings):</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    APP_NAME: <span class="bu">str</span> <span class="op">=</span> <span class="st">&quot;SIGHO&quot;</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    APP_VERSION: <span class="bu">str</span> <span class="op">=</span> <span class="st">&quot;1.0.0&quot;</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    DEBUG: <span class="bu">bool</span> <span class="op">=</span> <span class="va">True</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    HOST: <span class="bu">str</span> <span class="op">=</span> <span class="st">&quot;127.0.0.1&quot;</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    PORT: <span class="bu">int</span> <span class="op">=</span> <span class="dv">8000</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>    DATABASE_URL: <span class="bu">str</span> <span class="op">=</span> <span class="st">&quot;sqlite:///./sigho.db&quot;</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>    SECRET_KEY: <span class="bu">str</span></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>    ALGORITHM: <span class="bu">str</span> <span class="op">=</span> <span class="st">&quot;HS256&quot;</span></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>    ACCESS_TOKEN_EXPIRE_MINUTES: <span class="bu">int</span> <span class="op">=</span> <span class="dv">30</span></span></code></pre></div>
+<h3 id="modelos-de-datos">6.3 Modelos de Datos</h3>
+<h4 id="user-model">User Model</h4>
+<div class="sourceCode" id="cb10"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> User(Base):</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    __tablename__ <span class="op">=</span> <span class="st">&quot;users&quot;</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">id</span>: <span class="bu">int</span> (PK)</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    username: <span class="bu">str</span> (unique)</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    email: <span class="bu">str</span> (unique)</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    full_name: <span class="bu">str</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>    hashed_password: <span class="bu">str</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>    role: UserRole (enum)</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>    is_active: <span class="bu">bool</span></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>    is_superuser: <span class="bu">bool</span></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>    created_at: datetime</span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>    updated_at: datetime</span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>    last_login: datetime</span></code></pre></div>
+<h4 id="room-model">Room Model</h4>
+<div class="sourceCode" id="cb11"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Room(Base):</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    __tablename__ <span class="op">=</span> <span class="st">&quot;rooms&quot;</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">id</span>: <span class="bu">int</span> (PK)</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    room_number: <span class="bu">str</span> (unique)</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>    floor: <span class="bu">int</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>    room_type_id: <span class="bu">int</span> (FK <span class="op">-&gt;</span> room_types)</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>    status: RoomStatus (enum)</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>    is_active: <span class="bu">bool</span></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>    notes: <span class="bu">str</span></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>    created_at: datetime</span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>    updated_at: datetime</span></code></pre></div>
+<h4 id="reservation-model">Reservation Model</h4>
+<div class="sourceCode" id="cb12"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Reservation(Base):</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    __tablename__ <span class="op">=</span> <span class="st">&quot;reservations&quot;</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">id</span>: <span class="bu">int</span> (PK)</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>    confirmation_code: <span class="bu">str</span> (unique)</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>    guest_id: <span class="bu">int</span> (FK <span class="op">-&gt;</span> guests)</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>    room_id: <span class="bu">int</span> (FK <span class="op">-&gt;</span> rooms)</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>    check_in_date: date</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>    check_out_date: date</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>    num_adults: <span class="bu">int</span></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>    num_children: <span class="bu">int</span></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>    status: ReservationStatus (enum)</span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>    currency: <span class="bu">str</span></span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>    price_per_night: <span class="bu">float</span></span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>    total_amount: <span class="bu">float</span></span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>    paid_amount: <span class="bu">float</span></span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>    is_paid: <span class="bu">bool</span></span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>    ...</span></code></pre></div>
+<h3 id="schemas-pydantic">6.4 Schemas Pydantic</h3>
+<p>Cada entidad tiene schemas para: - <strong>Base:</strong> Campos
+comunes - <strong>Create:</strong> Para crear nuevos registros -
+<strong>Update:</strong> Para actualizar registros -
+<strong>Response:</strong> Para retornar datos al cliente -
+<strong>InDB:</strong> Representación en base de datos</p>
+<p>Ejemplo:</p>
+<div class="sourceCode" id="cb13"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> UserBase(BaseModel):</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    email: EmailStr</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    full_name: <span class="bu">str</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    role: UserRole</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>    is_active: <span class="bu">bool</span> <span class="op">=</span> <span class="va">True</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> UserCreate(UserBase):</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>    username: <span class="bu">str</span></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>    password: <span class="bu">str</span></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> UserResponse(UserBase):</span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>    <span class="bu">id</span>: <span class="bu">int</span></span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>    username: <span class="bu">str</span></span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>    created_at: datetime</span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>    <span class="kw">class</span> Config:</span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>        from_attributes <span class="op">=</span> <span class="va">True</span></span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> UserInDB(UserResponse):</span>
+<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a>    hashed_password: <span class="bu">str</span></span></code></pre></div>
+<h3 id="endpoints-principales">6.5 Endpoints Principales</h3>
+<h4 id="autenticación">Autenticación</h4>
+<ul>
+<li><code>POST /api/auth/login</code> - Login de usuario</li>
+<li><code>POST /api/auth/refresh</code> - Refrescar token</li>
+<li><code>GET /api/auth/me</code> - Información del usuario actual</li>
+</ul>
+<h4 id="usuarios">Usuarios</h4>
+<ul>
+<li><code>GET /api/users</code> - Listar usuarios</li>
+<li><code>POST /api/users</code> - Crear usuario</li>
+<li><code>GET /api/users/{id}</code> - Obtener usuario</li>
+<li><code>PUT /api/users/{id}</code> - Actualizar usuario</li>
+<li><code>DELETE /api/users/{id}</code> - Eliminar usuario</li>
+</ul>
+<h4 id="habitaciones">Habitaciones</h4>
+<ul>
+<li><code>GET /api/rooms</code> - Listar habitaciones</li>
+<li><code>POST /api/rooms</code> - Crear habitación</li>
+<li><code>GET /api/rooms/{id}</code> - Obtener habitación</li>
+<li><code>PUT /api/rooms/{id}</code> - Actualizar habitación</li>
+<li><code>GET /api/rooms/available</code> - Habitaciones
+disponibles</li>
+</ul>
+<h4 id="reservas">Reservas</h4>
+<ul>
+<li><code>GET /api/reservations</code> - Listar reservas</li>
+<li><code>POST /api/reservations</code> - Crear reserva</li>
+<li><code>GET /api/reservations/{id}</code> - Obtener reserva</li>
+<li><code>PUT /api/reservations/{id}</code> - Actualizar reserva</li>
+<li><code>POST /api/reservations/{id}/check-in</code> - Hacer
+check-in</li>
+<li><code>POST /api/reservations/{id}/check-out</code> - Hacer
+check-out</li>
+<li><code>POST /api/reservations/{id}/cancel</code> - Cancelar
+reserva</li>
+</ul>
+<hr />
+<h2 id="frontend-gui">7. Frontend GUI</h2>
+<h3 id="estructura-del-frontend">7.1 Estructura del Frontend</h3>
+<pre><code>frontend/app/
+├── views/              # Vistas principales
+│   ├── login_view.py
+│   ├── main_window.py
+│   ├── dashboard_view.py
+│   ├── reservations_view.py
+│   ├── rooms_view.py
+│   ├── guests_view.py
+│   ├── payments_view.py
+│   ├── maintenance_view.py
+│   ├── inventory_view.py
+│   ├── reports_view.py
+│   ├── users_view.py
+│   └── settings_view.py
+│
+├── components/         # Componentes reutilizables
+│   ├── sidebar.py
+│   ├── topbar.py
+│   ├── data_table.py
+│   └── dialog.py
+│
+├── services/          # Servicios
+│   └── api_client.py
+│
+└── utils/             # Utilidades
+    └── validators.py</code></pre>
+<h3 id="configuración-del-theme">7.2 Configuración del Theme</h3>
+<div class="sourceCode" id="cb15"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># config/theme.py</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>COLORS <span class="op">=</span> {</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;primary&quot;</span>: <span class="st">&quot;#1f538d&quot;</span>,</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;secondary&quot;</span>: <span class="st">&quot;#14a085&quot;</span>,</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;success&quot;</span>: <span class="st">&quot;#27ae60&quot;</span>,</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;danger&quot;</span>: <span class="st">&quot;#c0392b&quot;</span>,</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;warning&quot;</span>: <span class="st">&quot;#f39c12&quot;</span>,</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;dark&quot;</span>: <span class="st">&quot;#2c3e50&quot;</span>,</span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;light&quot;</span>: <span class="st">&quot;#ecf0f1&quot;</span></span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<h3 id="api-client">7.3 API Client</h3>
+<div class="sourceCode" id="cb16"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> APIClient:</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>    BASE_URL <span class="op">=</span> <span class="st">&quot;http://127.0.0.1:8000&quot;</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>):</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.token <span class="op">=</span> <span class="va">None</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> login(<span class="va">self</span>, username, password):</span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>        response <span class="op">=</span> requests.post(</span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>            <span class="ss">f&quot;</span><span class="sc">{</span><span class="va">self</span><span class="sc">.</span>BASE_URL<span class="sc">}</span><span class="ss">/api/auth/login&quot;</span>,</span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>            data<span class="op">=</span>{<span class="st">&quot;username&quot;</span>: username, <span class="st">&quot;password&quot;</span>: password}</span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.token <span class="op">=</span> response.json()[<span class="st">&quot;access_token&quot;</span>]</span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">self</span>.token</span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> get(<span class="va">self</span>, endpoint):</span>
+<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a>        headers <span class="op">=</span> {<span class="st">&quot;Authorization&quot;</span>: <span class="ss">f&quot;Bearer </span><span class="sc">{</span><span class="va">self</span><span class="sc">.</span>token<span class="sc">}</span><span class="ss">&quot;</span>}</span>
+<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> requests.get(</span>
+<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a>            <span class="ss">f&quot;</span><span class="sc">{</span><span class="va">self</span><span class="sc">.</span>BASE_URL<span class="sc">}{</span>endpoint<span class="sc">}</span><span class="ss">&quot;</span>,</span>
+<span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a>            headers<span class="op">=</span>headers</span>
+<span id="cb16-20"><a href="#cb16-20" aria-hidden="true" tabindex="-1"></a>        )</span></code></pre></div>
+<hr />
+<h2 id="base-de-datos">8. Base de Datos</h2>
+<h3 id="esquema-de-la-base-de-datos">8.1 Esquema de la Base de
+Datos</h3>
+<h4 id="tablas-principales">Tablas Principales</h4>
+<ol type="1">
+<li><strong>users</strong> - Usuarios del sistema</li>
+<li><strong>room_types</strong> - Tipos de habitación</li>
+<li><strong>rooms</strong> - Habitaciones</li>
+<li><strong>guests</strong> - Huéspedes</li>
+<li><strong>reservations</strong> - Reservas</li>
+<li><strong>payments</strong> - Pagos</li>
+<li><strong>maintenance</strong> - Mantenimiento</li>
+<li><strong>inventory</strong> - Inventario</li>
+<li><strong>inventory_movements</strong> - Movimientos de
+inventario</li>
+<li><strong>amenities</strong> - Amenidades</li>
+<li><strong>room_type_amenities</strong> - Relación
+tipos-amenidades</li>
+</ol>
+<h3 id="relaciones">8.2 Relaciones</h3>
+<pre><code>users (1) ---&gt; (*) reservations
+users (1) ---&gt; (*) payments
+users (1) ---&gt; (*) maintenance
+
+room_types (1) ---&gt; (*) rooms
+room_types (*) &lt;---&gt; (*) amenities
+
+rooms (1) ---&gt; (*) reservations
+rooms (1) ---&gt; (*) maintenance
+
+guests (1) ---&gt; (*) reservations
+
+reservations (1) ---&gt; (*) payments
+
+inventory (1) ---&gt; (*) inventory_movements</code></pre>
+<h3 id="índices">8.3 Índices</h3>
+<div class="sourceCode" id="cb18"><pre
+class="sourceCode sql"><code class="sourceCode sql"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">INDEX</span> ix_users_username <span class="kw">ON</span> users(username);</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">INDEX</span> ix_users_email <span class="kw">ON</span> users(email);</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">INDEX</span> ix_rooms_room_number <span class="kw">ON</span> rooms(room_number);</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">INDEX</span> ix_reservations_confirmation_code <span class="kw">ON</span> reservations(confirmation_code);</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">INDEX</span> ix_payments_payment_code <span class="kw">ON</span> payments(payment_code);</span></code></pre></div>
+<hr />
+<h2 id="autenticación-y-seguridad">9. Autenticación y Seguridad</h2>
+<h3 id="sistema-de-autenticación">9.1 Sistema de Autenticación</h3>
+<ul>
+<li><strong>Método:</strong> JWT (JSON Web Tokens)</li>
+<li><strong>Algoritmo:</strong> HS256</li>
+<li><strong>Expiración:</strong> 30 minutos</li>
+<li><strong>Hash de contraseñas:</strong> bcrypt</li>
+</ul>
+<h3 id="roles-de-usuario">9.2 Roles de Usuario</h3>
+<div class="sourceCode" id="cb19"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> UserRole(<span class="bu">str</span>, Enum):</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>    ADMIN <span class="op">=</span> <span class="st">&quot;admin&quot;</span>              <span class="co"># Acceso completo</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>    MANAGER <span class="op">=</span> <span class="st">&quot;manager&quot;</span>          <span class="co"># Gestión general</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>    RECEPTIONIST <span class="op">=</span> <span class="st">&quot;receptionist&quot;</span> <span class="co"># Reservas y huéspedes</span></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>    MAINTENANCE <span class="op">=</span> <span class="st">&quot;maintenance&quot;</span>   <span class="co"># Mantenimiento</span></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>    INVENTORY <span class="op">=</span> <span class="st">&quot;inventory&quot;</span>       <span class="co"># Inventario</span></span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>    VIEWER <span class="op">=</span> <span class="st">&quot;viewer&quot;</span>            <span class="co"># Solo lectura</span></span></code></pre></div>
+<h3 id="flujo-de-autenticación">9.3 Flujo de Autenticación</h3>
+<ol type="1">
+<li>Usuario envía credenciales a <code>/api/auth/login</code></li>
+<li>Backend valida credenciales</li>
+<li>Backend genera JWT token</li>
+<li>Frontend almacena token</li>
+<li>Frontend incluye token en cada request subsecuente</li>
+<li>Backend valida token en cada endpoint protegido</li>
+</ol>
+<hr />
+<h2 id="guía-de-desarrollo">10. Guía de Desarrollo</h2>
+<h3 id="agregar-un-nuevo-endpoint">10.1 Agregar un Nuevo Endpoint</h3>
+<ol type="1">
+<li><strong>Crear Schema</strong> (<code>app/schemas/</code>)</li>
+</ol>
+<div class="sourceCode" id="cb20"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> NewEntityBase(BaseModel):</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>    name: <span class="bu">str</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>    description: <span class="bu">str</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> NewEntityCreate(NewEntityBase):</span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">pass</span></span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> NewEntityResponse(NewEntityBase):</span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>    <span class="bu">id</span>: <span class="bu">int</span></span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a>    created_at: datetime</span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a>    <span class="kw">class</span> Config:</span>
+<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a>        from_attributes <span class="op">=</span> <span class="va">True</span></span></code></pre></div>
+<ol start="2" type="1">
+<li><strong>Crear Model</strong> (<code>app/models/</code>)</li>
+</ol>
+<div class="sourceCode" id="cb21"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> NewEntity(Base):</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>    __tablename__ <span class="op">=</span> <span class="st">&quot;new_entities&quot;</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">id</span> <span class="op">=</span> Column(Integer, primary_key<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>    name <span class="op">=</span> Column(String(<span class="dv">100</span>), nullable<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>    description <span class="op">=</span> Column(Text)</span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>    created_at <span class="op">=</span> Column(DateTime, default<span class="op">=</span>datetime.utcnow)</span></code></pre></div>
+<ol start="3" type="1">
+<li><strong>Crear Service</strong> (<code>app/services/</code>)</li>
+</ol>
+<div class="sourceCode" id="cb22"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> NewEntityService:</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> get_all(db: Session):</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> db.query(NewEntity).<span class="bu">all</span>()</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> create(db: Session, data: NewEntityCreate):</span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>        entity <span class="op">=</span> NewEntity(<span class="op">**</span>data.<span class="bu">dict</span>())</span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>        db.add(entity)</span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>        db.commit()</span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> entity</span></code></pre></div>
+<ol start="4" type="1">
+<li><strong>Crear Endpoint</strong>
+(<code>app/api/endpoints/</code>)</li>
+</ol>
+<div class="sourceCode" id="cb23"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>router <span class="op">=</span> APIRouter()</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="at">@router.get</span>(<span class="st">&quot;/&quot;</span>, response_model<span class="op">=</span>List[NewEntityResponse])</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> list_entities(db: Session <span class="op">=</span> Depends(get_db)):</span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> NewEntityService.get_all(db)</span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a><span class="at">@router.post</span>(<span class="st">&quot;/&quot;</span>, response_model<span class="op">=</span>NewEntityResponse)</span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> create_entity(</span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>    data: NewEntityCreate,</span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a>    db: Session <span class="op">=</span> Depends(get_db)</span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a>):</span>
+<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> NewEntityService.create(db, data)</span></code></pre></div>
+<ol start="5" type="1">
+<li><strong>Registrar Router</strong> (<code>main.py</code>)</li>
+</ol>
+<div class="sourceCode" id="cb24"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> app.api.endpoints <span class="im">import</span> new_entity</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>app.include_router(</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>    new_entity.router,</span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>    prefix<span class="op">=</span><span class="st">&quot;/api/new-entities&quot;</span>,</span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>    tags<span class="op">=</span>[<span class="st">&quot;New Entities&quot;</span>]</span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<h3 id="agregar-una-nueva-vista">10.2 Agregar una Nueva Vista</h3>
+<ol type="1">
+<li><strong>Crear Vista</strong>
+(<code>frontend/app/views/new_view.py</code>)</li>
+</ol>
+<div class="sourceCode" id="cb25"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> NewView(ctk.CTkFrame):</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, parent):</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>        <span class="bu">super</span>().<span class="fu">__init__</span>(parent)</span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.create_widgets()</span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> create_widgets(<span class="va">self</span>):</span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Crear interfaz</span></span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>        <span class="cf">pass</span></span></code></pre></div>
+<ol start="2" type="1">
+<li><strong>Agregar al Menú</strong> (<code>main_window.py</code>)</li>
+</ol>
+<div class="sourceCode" id="cb26"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="va">self</span>.menu_items <span class="op">=</span> [</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ...</span></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>    (<span class="st">&quot;Nueva Vista&quot;</span>, <span class="va">self</span>.show_new_view, <span class="st">&quot;icon.png&quot;</span>)</span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> show_new_view(<span class="va">self</span>):</span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>    <span class="va">self</span>.clear_content()</span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>    view <span class="op">=</span> NewView(<span class="va">self</span>.content_frame)</span>
+<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a>    view.pack(fill<span class="op">=</span><span class="st">&quot;both&quot;</span>, expand<span class="op">=</span><span class="va">True</span>)</span></code></pre></div>
+<h3 id="testing">10.3 Testing</h3>
+<div class="sourceCode" id="cb27"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># backend/tests/test_endpoints.py</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> test_create_user():</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>    response <span class="op">=</span> client.post(</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>        <span class="st">&quot;/api/users&quot;</span>,</span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>        json<span class="op">=</span>{</span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>            <span class="st">&quot;username&quot;</span>: <span class="st">&quot;test&quot;</span>,</span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>            <span class="st">&quot;email&quot;</span>: <span class="st">&quot;test@test.com&quot;</span>,</span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>            <span class="st">&quot;full_name&quot;</span>: <span class="st">&quot;Test User&quot;</span>,</span>
+<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a>            <span class="st">&quot;password&quot;</span>: <span class="st">&quot;test123&quot;</span>,</span>
+<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a>            <span class="st">&quot;role&quot;</span>: <span class="st">&quot;viewer&quot;</span></span>
+<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a>        }</span>
+<span id="cb27-12"><a href="#cb27-12" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb27-13"><a href="#cb27-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> response.status_code <span class="op">==</span> <span class="dv">200</span></span>
+<span id="cb27-14"><a href="#cb27-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> response.json()[<span class="st">&quot;username&quot;</span>] <span class="op">==</span> <span class="st">&quot;test&quot;</span></span></code></pre></div>
+<hr />
+<h2 id="api-reference">11. API Reference</h2>
+<h3 id="authentication-endpoints">11.1 Authentication Endpoints</h3>
+<h4 id="post-apiauthlogin">POST /api/auth/login</h4>
+<p>Login de usuario.</p>
+<p><strong>Request:</strong></p>
+<div class="sourceCode" id="cb28"><pre
+class="sourceCode json"><code class="sourceCode json"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;username&quot;</span><span class="fu">:</span> <span class="st">&quot;admin&quot;</span><span class="fu">,</span></span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;password&quot;</span><span class="fu">:</span> <span class="st">&quot;admin123&quot;</span></span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div>
+<p><strong>Response:</strong></p>
+<div class="sourceCode" id="cb29"><pre
+class="sourceCode json"><code class="sourceCode json"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;access_token&quot;</span><span class="fu">:</span> <span class="st">&quot;eyJ0eXAiOiJKV1QiLCJhbGc...&quot;</span><span class="fu">,</span></span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;token_type&quot;</span><span class="fu">:</span> <span class="st">&quot;bearer&quot;</span></span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div>
+<h3 id="users-endpoints">11.2 Users Endpoints</h3>
+<h4 id="get-apiusers">GET /api/users</h4>
+<p>Lista todos los usuarios.</p>
+<p><strong>Headers:</strong></p>
+<pre><code>Authorization: Bearer {token}</code></pre>
+<p><strong>Response:</strong></p>
+<div class="sourceCode" id="cb31"><pre
+class="sourceCode json"><code class="sourceCode json"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="ot">[</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">{</span></span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;id&quot;</span><span class="fu">:</span> <span class="dv">1</span><span class="fu">,</span></span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;username&quot;</span><span class="fu">:</span> <span class="st">&quot;admin&quot;</span><span class="fu">,</span></span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;email&quot;</span><span class="fu">:</span> <span class="st">&quot;admin@hotel.com&quot;</span><span class="fu">,</span></span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;full_name&quot;</span><span class="fu">:</span> <span class="st">&quot;Administrator&quot;</span><span class="fu">,</span></span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;role&quot;</span><span class="fu">:</span> <span class="st">&quot;admin&quot;</span><span class="fu">,</span></span>
+<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;is_active&quot;</span><span class="fu">:</span> <span class="kw">true</span><span class="fu">,</span></span>
+<span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;created_at&quot;</span><span class="fu">:</span> <span class="st">&quot;2025-12-03T10:00:00&quot;</span></span>
+<span id="cb31-10"><a href="#cb31-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">}</span></span>
+<span id="cb31-11"><a href="#cb31-11" aria-hidden="true" tabindex="-1"></a><span class="ot">]</span></span></code></pre></div>
+<h3 id="rooms-endpoints">11.3 Rooms Endpoints</h3>
+<h4 id="get-apiroomsavailable">GET /api/rooms/available</h4>
+<p>Lista habitaciones disponibles.</p>
+<p><strong>Query Parameters:</strong> - <code>check_in</code>: Fecha de
+entrada (YYYY-MM-DD) - <code>check_out</code>: Fecha de salida
+(YYYY-MM-DD) - <code>num_adults</code>: Número de adultos -
+<code>num_children</code>: Número de niños</p>
+<p><strong>Response:</strong></p>
+<div class="sourceCode" id="cb32"><pre
+class="sourceCode json"><code class="sourceCode json"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="ot">[</span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">{</span></span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;room_type_id&quot;</span><span class="fu">:</span> <span class="dv">1</span><span class="fu">,</span></span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;room_type_name&quot;</span><span class="fu">:</span> <span class="st">&quot;Doble&quot;</span><span class="fu">,</span></span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;available_rooms&quot;</span><span class="fu">:</span> <span class="dv">5</span><span class="fu">,</span></span>
+<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;price_per_night_usd&quot;</span><span class="fu">:</span> <span class="fl">40.0</span><span class="fu">,</span></span>
+<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;total_nights&quot;</span><span class="fu">:</span> <span class="dv">3</span><span class="fu">,</span></span>
+<span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;total_price_usd&quot;</span><span class="fu">:</span> <span class="fl">120.0</span></span>
+<span id="cb32-9"><a href="#cb32-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">}</span></span>
+<span id="cb32-10"><a href="#cb32-10" aria-hidden="true" tabindex="-1"></a><span class="ot">]</span></span></code></pre></div>
+<hr />
+<h2 id="troubleshooting">12. Troubleshooting</h2>
+<h3 id="problemas-comunes">12.1 Problemas Comunes</h3>
+<h4 id="error-python-no-está-instalado">Error: “Python no está
+instalado”</h4>
+<p><strong>Solución:</strong> Instalar Python 3.12 y asegurarse de
+marcar “Add to PATH”</p>
+<h4 id="error-module-not-found">Error: “Module not found”</h4>
+<p><strong>Solución:</strong></p>
+<div class="sourceCode" id="cb33"><pre
+class="sourceCode powershell"><code class="sourceCode powershell"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>pip install <span class="op">-</span>r requirements<span class="op">.</span><span class="fu">txt</span></span></code></pre></div>
+<h4 id="error-puerto-8000-en-uso">Error: “Puerto 8000 en uso”</h4>
+<p><strong>Solución:</strong> Cambiar puerto en
+<code>backend/.env</code> o matar proceso:</p>
+<div class="sourceCode" id="cb34"><pre
+class="sourceCode powershell"><code class="sourceCode powershell"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>netstat <span class="op">-</span>ano <span class="op">|</span> findstr <span class="op">:</span><span class="dv">8000</span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="dt">taskkill</span> <span class="op">/</span>PID <span class="op">[</span>PID<span class="op">]</span> <span class="op">/</span>F</span></code></pre></div>
+<h4 id="error-no-se-puede-conectar-al-backend">Error: “No se puede
+conectar al backend”</h4>
+<p><strong>Solución:</strong> Verificar que el backend esté
+corriendo:</p>
+<div class="sourceCode" id="cb35"><pre
+class="sourceCode powershell"><code class="sourceCode powershell"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">Invoke-WebRequest</span> http<span class="op">://</span><span class="dv">127.0</span><span class="op">.</span><span class="dv">0.1</span><span class="op">:</span><span class="dv">8000</span><span class="op">/</span>health</span></code></pre></div>
+<h3 id="logs">12.2 Logs</h3>
+<ul>
+<li><strong>Backend logs:</strong> Consola donde corre
+<code>python main.py</code></li>
+<li><strong>Frontend logs:</strong> Consola donde corre el frontend</li>
+<li><strong>Database:</strong> <code>backend/sigho.db</code></li>
+<li><strong>Session:</strong> <code>frontend/.session</code></li>
+</ul>
+<h3 id="comandos-útiles">12.3 Comandos Útiles</h3>
+<div class="sourceCode" id="cb36"><pre
+class="sourceCode powershell"><code class="sourceCode powershell"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Verificar version de Python</span></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>python <span class="op">--</span>version</span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Listar dependencias instaladas</span></span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a>pip list</span>
+<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Reinstalar dependencias</span></span>
+<span id="cb36-8"><a href="#cb36-8" aria-hidden="true" tabindex="-1"></a>pip install <span class="op">-</span>r requirements<span class="op">.</span><span class="fu">txt</span> <span class="op">--</span>force-reinstall</span>
+<span id="cb36-9"><a href="#cb36-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-10"><a href="#cb36-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Limpiar archivos temporales</span></span>
+<span id="cb36-11"><a href="#cb36-11" aria-hidden="true" tabindex="-1"></a><span class="op">.</span>\clean<span class="op">.</span><span class="fu">ps1</span></span>
+<span id="cb36-12"><a href="#cb36-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-13"><a href="#cb36-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Diagnosticar sistema</span></span>
+<span id="cb36-14"><a href="#cb36-14" aria-hidden="true" tabindex="-1"></a><span class="op">.</span>\test<span class="op">.</span><span class="fu">ps1</span></span></code></pre></div>
+<hr />
+<h2 id="apéndices">Apéndices</h2>
+<h3 id="a.-variables-de-entorno">A. Variables de Entorno</h3>
+<p><strong>Backend (.env):</strong></p>
+<pre class="env"><code>APP_NAME=SIGHO
+APP_VERSION=1.0.0
+DEBUG=True
+HOST=127.0.0.1
+PORT=8000
+DATABASE_URL=sqlite:///./sigho.db
+SECRET_KEY=your-secret-key-here
+ALGORITHM=HS256
+ACCESS_TOKEN_EXPIRE_MINUTES=30</code></pre>
+<h3 id="b.-estructura-de-respuestas-api">B. Estructura de Respuestas
+API</h3>
+<p>Todas las respuestas exitosas siguen el formato:</p>
+<div class="sourceCode" id="cb38"><pre
+class="sourceCode json"><code class="sourceCode json"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;data&quot;</span><span class="fu">:</span> <span class="fu">{</span><span class="er">...</span><span class="fu">},</span></span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;message&quot;</span><span class="fu">:</span> <span class="st">&quot;Success&quot;</span></span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div>
+<p>Errores:</p>
+<div class="sourceCode" id="cb39"><pre
+class="sourceCode json"><code class="sourceCode json"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;detail&quot;</span><span class="fu">:</span> <span class="st">&quot;Error message&quot;</span></span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div>
+<h3 id="c.-códigos-de-estado-http">C. Códigos de Estado HTTP</h3>
+<ul>
+<li><code>200</code> OK - Operación exitosa</li>
+<li><code>201</code> Created - Recurso creado</li>
+<li><code>400</code> Bad Request - Datos inválidos</li>
+<li><code>401</code> Unauthorized - No autenticado</li>
+<li><code>403</code> Forbidden - Sin permisos</li>
+<li><code>404</code> Not Found - Recurso no encontrado</li>
+<li><code>500</code> Internal Server Error - Error del servidor</li>
+</ul>
+<hr />
+<p><strong>Fin de Documentación Técnica</strong></p>

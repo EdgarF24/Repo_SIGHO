@@ -42,3 +42,8 @@ class PaymentResponse(PaymentBase):
     
     class Config:
         from_attributes = True
+
+
+class PaymentInDB(PaymentResponse):
+    """Schema de pago en base de datos"""
+    pass

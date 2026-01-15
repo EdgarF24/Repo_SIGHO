@@ -32,7 +32,7 @@ class LoginView(ctk.CTkFrame):
         # Logo/Título
         title_label = ctk.CTkLabel(
             container,
-            text="🏨 " + APP_NAME,
+            text="" + APP_NAME,
             font=FONTS["title"]
         )
         title_label.grid(row=0, column=0, pady=(30, 10), padx=40)
@@ -101,7 +101,7 @@ class LoginView(ctk.CTkFrame):
         
         ctk.CTkLabel(
             info_frame,
-            text="💡 Credenciales de prueba:",
+            text="Credenciales de prueba:",
             font=FONTS["small"]
         ).pack()
         
