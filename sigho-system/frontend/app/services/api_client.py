@@ -60,6 +60,13 @@ class APIClient:
         response = self.session.get(url, params=params, timeout=API_TIMEOUT)
         return self._handle_response(response)
     
+    def get_raw(self, endpoint: str, params: Optional[Dict] = None) -> requests.Response:
+        """Petición GET que retorna la respuesta sin procesar (para archivos binarios)"""
+        url = f"{self.base_url}{endpoint}"
+        response = self.session.get(url, params=params, timeout=API_TIMEOUT)
+        response.raise_for_status()
+        return response
+    
     def post(self, endpoint: str, data: Optional[Dict] = None, json_data: Optional[Dict] = None) -> Dict[str, Any]:
         """Petición POST"""
         url = f"{self.base_url}{endpoint}"

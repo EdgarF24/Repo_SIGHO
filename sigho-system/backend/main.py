@@ -23,7 +23,8 @@ from app.api.endpoints import (
     maintenance,
     inventory,
     reports,
-    dashboard
+    dashboard,
+    invoices
 )
 
 # Crear aplicacion FastAPI
@@ -99,6 +100,7 @@ app.include_router(maintenance.router, prefix="/api/maintenance", tags=["Manteni
 app.include_router(inventory.router, prefix="/api/inventory", tags=["Inventario"])
 app.include_router(reports.router, prefix="/api/reports", tags=["Reportes"])
 app.include_router(dashboard.router, prefix="/api/dashboard", tags=["Dashboard"])
+app.include_router(invoices.router, prefix="/api/invoices", tags=["Facturacion"])
 
 
 if __name__ == "__main__":

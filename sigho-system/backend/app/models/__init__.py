@@ -11,6 +11,7 @@ from app.models.maintenance import Maintenance, MaintenanceType, MaintenancePrio
 from app.models.inventory import Inventory, InventoryCategory
 from app.models.inventory_movement import InventoryMovement, MovementType
 from app.models.amenity import Amenity, RoomTypeAmenity, AmenityCategory
+from app.models.invoice import Invoice, InvoiceItem, InvoiceStatus, DocumentType
 
 __all__ = [
     "User",
@@ -35,4 +36,9 @@ __all__ = [
     "Amenity",
     "RoomTypeAmenity",
     "AmenityCategory",
+    "Invoice",
+    "InvoiceItem",
+    "InvoiceStatus",
+    "DocumentType",
 ]
+

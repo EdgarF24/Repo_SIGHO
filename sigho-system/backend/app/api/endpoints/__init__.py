@@ -13,7 +13,8 @@ from . import (
     maintenance,
     inventory,
     reports,
-    dashboard
+    dashboard,
+    invoices
 )
 
 __all__ = [
@@ -28,5 +29,6 @@ __all__ = [
     "maintenance",
     "inventory",
     "reports",
-    "dashboard"
+    "dashboard",
+    "invoices"
 ]

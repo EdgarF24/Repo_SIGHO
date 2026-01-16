@@ -11,6 +11,7 @@ from app.schemas.room import (
     RoomCreate, 
     RoomUpdate, 
     RoomResponse,
+    RoomStatusUpdate,
     RoomTypeCreate,
     RoomTypeUpdate,
     RoomTypeResponse,
@@ -407,6 +408,46 @@ def update_room(
     for field, value in update_data.items():
         setattr(room, field, value)
     
+    db.commit()
+    db.refresh(room)
+    
+    return room
+
+
+@router.put("/{room_id}/status", response_model=RoomResponse)
+def change_room_status(
+    room_id: int,
+    status_in: RoomStatusUpdate,
+    db: Session = Depends(get_db),
+    current_user: User = Depends(require_role([UserRole.ADMIN, UserRole.MANAGER, UserRole.RECEPTIONIST]))
+):
+    """
+    Cambia el estado de una habitación.
+    Si la habitación está ocupada, verifica que no tenga reservas con check-in activo.
+    """
+    room = db.query(Room).filter(Room.id == room_id).first()
+    if not room:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="Habitación no encontrada"
+        )
+    
+    # Si la habitación está ocupada y se intenta cambiar a otro estado,
+    # verificar que no tenga una reserva con check-in activo
+    if room.status == RoomStatus.OCCUPIED and status_in.status != RoomStatus.OCCUPIED:
+        active_checkin = db.query(Reservation).filter(
+            Reservation.room_id == room_id,
+            Reservation.status == ReservationStatus.CHECKED_IN
+        ).first()
+        
+        if active_checkin:
+            raise HTTPException(
+                status_code=status.HTTP_400_BAD_REQUEST,
+                detail="No se puede cambiar el estado. La habitación tiene una reserva activa con check-in. "
+                       "Primero debe realizar el check-out de la reserva."
+            )
+    
+    room.status = status_in.status
     db.commit()
     db.refresh(room)
     

@@ -84,6 +84,11 @@ class RoomUpdate(BaseModel):
     is_active: Optional[bool] = None
 
 
+class RoomStatusUpdate(BaseModel):
+    """Schema para cambiar solo el estado de una habitación"""
+    status: RoomStatus
+
+
 class RoomResponse(RoomBase):
     """Schema de respuesta de habitación"""
     id: int

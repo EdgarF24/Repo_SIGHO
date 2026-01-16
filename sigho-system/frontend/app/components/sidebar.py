@@ -103,6 +103,7 @@ class Sidebar(ctk.CTkFrame):
                 (" Reservas", "reservations", True),
                 (" Huéspedes", "guests", True),
                 (" Pagos", "payments", True),
+                (" Facturación", "billing", True),
             ])
         
         # Mantenimiento (admin, manager, maintenance)

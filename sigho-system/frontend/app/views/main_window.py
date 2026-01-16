@@ -9,6 +9,7 @@ from app.views.reservations_view import ReservationsView
 from app.views.rooms_view import RoomsView
 from app.views.guests_view import GuestsView
 from app.views.payments_view import PaymentsView
+from app.views.billing_view import BillingView
 from app.views.maintenance_view import MaintenanceView
 from app.views.inventory_view import InventoryView
 from app.views.reports_view import ReportsView
@@ -72,6 +73,7 @@ class MainWindow(ctk.CTkFrame):
             "rooms": (RoomsView, "Gestión de Habitaciones"),
             "guests": (GuestsView, "Gestión de Huéspedes"),
             "payments": (PaymentsView, "Gestión de Pagos"),
+            "billing": (BillingView, "Facturación"),
             "maintenance": (MaintenanceView, "Gestión de Mantenimiento"),
             "inventory": (InventoryView, "Gestión de Inventario"),
             "reports": (ReportsView, "Reportes"),
